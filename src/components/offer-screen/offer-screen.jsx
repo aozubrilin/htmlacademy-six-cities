@@ -1,6 +1,6 @@
 import React from "react";
 
-const RoomScreen = () => {
+const OfferScreen = () => {
   return (
     <div className="page">
       <header className="header">
@@ -326,4 +326,4 @@ const RoomScreen = () => {
   );
 };
 
-export default RoomScreen;
+export default OfferScreen;

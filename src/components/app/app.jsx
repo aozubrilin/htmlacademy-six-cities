@@ -4,7 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
 import FavoritesScreen from '../favorites-screen/favorites-screen';
-import RoomScreen from '../room-screen/room-screen';
+import OfferScreen from '../offer-screen/offer-screen';
 import {offerPropTypes} from "../../utils/prop-type";
 
 const App = (props) => {
@@ -13,6 +13,8 @@ const App = (props) => {
     currentCity,
     offers
   } = props;
+
+  const favoritesOffers = offers.filter((offer) => offer.isPremium === true);
 
   return (
     <BrowserRouter>
@@ -28,9 +30,11 @@ const App = (props) => {
           <AuthScreen/>
         </Route>
         <Route exact path="/favorites">
-          <FavoritesScreen/>
+          <FavoritesScreen
+            offers={favoritesOffers}
+          />
         </Route>
-        <Route exact path="/offer/:id?" component={RoomScreen}/>
+        <Route exact path="/offer/:id?" component={OfferScreen}/>
       </Switch>
     </BrowserRouter>
   );
