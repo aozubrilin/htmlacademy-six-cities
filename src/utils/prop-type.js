@@ -29,7 +29,7 @@ export const reviewPropTypes = PropTypes.shape(
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       avatar: PropTypes.string.isRequired,
-      reiting: PropTypes.number.isRequired,
+      rating: PropTypes.number.isRequired,
       date: PropTypes.object.isRequired,
       text: PropTypes.string.isRequired
     }

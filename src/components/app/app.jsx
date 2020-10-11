@@ -6,12 +6,14 @@ import AuthScreen from "../auth-screen/auth-screen";
 import FavoritesScreen from '../favorites-screen/favorites-screen';
 import OfferScreen from '../offer-screen/offer-screen';
 import {offerPropTypes} from "../../utils/prop-type";
+import {reviewPropTypes} from "../../utils/prop-type";
 
 const App = (props) => {
   const {
     availableOffersCount,
     currentCity,
-    offers
+    offers,
+    reviews
   } = props;
 
   const favoritesOffers = offers.filter((offer) => offer.isPremium === true);
@@ -34,7 +36,15 @@ const App = (props) => {
             offers={favoritesOffers}
           />
         </Route>
-        <Route exact path="/offer/:id?" component={OfferScreen}/>
+        <Route exact
+          path="/offer/:id"
+          render={({match}) => {
+            const {id} = match.params;
+            return (<OfferScreen
+              offer={offers.find((item) => item.id === Number(id))}
+              reviews={reviews}
+            />);
+          }} />
       </Switch>
     </BrowserRouter>
   );
@@ -44,6 +54,7 @@ App.propTypes = {
   availableOffersCount: PropTypes.number.isRequired,
   currentCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired
 };
 
 export default App;

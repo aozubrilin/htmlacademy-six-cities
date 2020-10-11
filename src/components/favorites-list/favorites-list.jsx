@@ -15,7 +15,7 @@ const FavoritesList = ({offers}) => {
           <FavoritesCityItem
             city={city}
             offers={offersByСity}
-            key={i}
+            key={`${city[i]}-${i}`}
           />
         );
       })}
