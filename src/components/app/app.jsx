@@ -5,11 +5,13 @@ import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
 import FavoritesScreen from '../favorites-screen/favorites-screen';
 import RoomScreen from '../room-screen/room-screen';
+import {offerPropTypes} from "../../utils/prop-type";
 
 const App = (props) => {
   const {
     availableOffersCount,
-    currentCity
+    currentCity,
+    offers
   } = props;
 
   return (
@@ -19,6 +21,7 @@ const App = (props) => {
           <Main
             availableOffersCount={availableOffersCount}
             currentCity={currentCity}
+            offers={offers}
           />
         </Route>
         <Route exact path="/login">
@@ -35,7 +38,8 @@ const App = (props) => {
 
 App.propTypes = {
   availableOffersCount: PropTypes.number.isRequired,
-  currentCity: PropTypes.string.isRequired
+  currentCity: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 export default App;
