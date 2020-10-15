@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaceList from "../places-list/places-list";
 import {offerPropTypes} from "../../utils/prop-type";
+import Map from "../map/map";
+
+const currentCity = `Amsterdam`;
 
 const Main = (props) => {
-  const {
-    availableOffersCount,
-    currentCity,
-    offers
-  } = props;
+  const {offers} = props;
+  const OffersInCity = offers.filter((it) => it.city === currentCity);
 
   return (
     <div className="page page--gray page--main">
@@ -77,7 +77,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{availableOffersCount} places to stay in {currentCity}</b>
+              <b className="places__found">{OffersInCity.length} places to stay in {currentCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -94,11 +94,13 @@ const Main = (props) => {
                 </ul>
               </form>
 
-              <PlaceList offers={offers} />
+              <PlaceList offers={OffersInCity} />
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map offers={OffersInCity}/>
+              </section>
             </div>
           </div>
         </div>
@@ -108,9 +110,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  availableOffersCount: PropTypes.number.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+ offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 export default Main;
