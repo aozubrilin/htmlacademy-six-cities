@@ -8,7 +8,7 @@ const currentCity = `Amsterdam`;
 
 const Main = (props) => {
   const {offers} = props;
-  const OffersInCity = offers.filter((it) => it.city === currentCity);
+  const currentOffers = offers.filter((it) => it.city === currentCity);
 
   return (
     <div className="page page--gray page--main">
@@ -77,7 +77,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{OffersInCity.length} places to stay in {currentCity}</b>
+              <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -94,12 +94,12 @@ const Main = (props) => {
                 </ul>
               </form>
 
-              <PlaceList offers={OffersInCity} />
+              <PlaceList offers={currentOffers} />
 
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={OffersInCity}/>
+                <Map offers={currentOffers}/>
               </section>
             </div>
           </div>
