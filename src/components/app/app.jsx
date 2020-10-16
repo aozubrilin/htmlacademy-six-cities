@@ -10,8 +10,6 @@ import {reviewPropTypes} from "../../utils/prop-type";
 
 const App = (props) => {
   const {
-    availableOffersCount,
-    currentCity,
     offers,
     reviews
   } = props;
@@ -23,8 +21,6 @@ const App = (props) => {
       <Switch>
         <Route exact path="/">
           <Main
-            availableOffersCount={availableOffersCount}
-            currentCity={currentCity}
             offers={offers}
           />
         </Route>
@@ -51,8 +47,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  availableOffersCount: PropTypes.number.isRequired,
-  currentCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   reviews: PropTypes.arrayOf(reviewPropTypes).isRequired
 };
