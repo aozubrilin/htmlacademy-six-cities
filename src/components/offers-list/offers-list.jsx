@@ -1,9 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
-import PlaceCard from "../place-card/place-card";
+import OfferCard from "../offer-card/offer-card";
 
-class PlacesList extends PureComponent {
+
+class OffersList extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -24,26 +25,24 @@ class PlacesList extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, cardClass} = this.props;
     return (
-      <div className="cities__places-list places__list tabs__content">
-        {
-          offers.map((offer) => (
-            <PlaceCard
-              handlePlaceCardMouseEnter = {this._handlePlaceCardMouseEnter}
-              handlePlaceCardMouseLeave = {this._handlePlaceCardMouseLeave}
-              key={offer.id}
-              offer={offer}
-            />
-          ))
-        }
-      </div>
+      offers.map((offer) => (
+        <OfferCard
+          handlePlaceCardMouseEnter = {this._handlePlaceCardMouseEnter}
+          handlePlaceCardMouseLeave = {this._handlePlaceCardMouseLeave}
+          key={offer.id}
+          offer={offer}
+          cardClass={cardClass}
+        />
+      ))
     );
   }
 }
 
-PlacesList.propTypes = {
+OffersList.propTypes = {
+  cardClass: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
-export default PlacesList;
+export default OffersList;

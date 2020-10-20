@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PlaceList from "../places-list/places-list";
+import OffersList from "../offers-list/offers-list";
 import {offerPropTypes} from "../../utils/prop-type";
+import {OfferCardClass} from "../../const";
 import Map from "../map/map";
 
 const currentCity = `Amsterdam`;
@@ -94,12 +95,16 @@ const Main = (props) => {
                 </ul>
               </form>
 
-              <PlaceList offers={currentOffers} />
+              <div className="cities__places-list places__list tabs__content">
+                <OffersList
+                  offers={currentOffers}
+                  cardClass={OfferCardClass.MAIN}/>
+              </div>
 
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={currentOffers}/>
+                <Map offers={currentOffers} />
               </section>
             </div>
           </div>
