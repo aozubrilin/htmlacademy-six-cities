@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
-import FavoritesOfferList from "../favorites-offer-list/favorites-offer-list";
+import OffersList from "../offers-list/offers-list";
+import {OfferCardClass} from "../../const";
 
 const FavoritesCityItem = ({city, offers}) => {
 
@@ -14,9 +15,12 @@ const FavoritesCityItem = ({city, offers}) => {
           </a>
         </div>
       </div>
-      <FavoritesOfferList
-        offers={offers}
-      />
+      <div className="favorites__places">
+        <OffersList
+          offers={offers}
+          cardClass={OfferCardClass.FAVORITE}
+        />
+      </div>
     </li>
   );
 };

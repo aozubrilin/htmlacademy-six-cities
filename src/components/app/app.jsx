@@ -14,7 +14,7 @@ const App = (props) => {
     reviews
   } = props;
 
-  const favoritesOffers = offers.filter((offer) => offer.isPremium === true);
+  const favoritesOffers = offers.filter((offer) => offer.isFavorite);
 
   return (
     <BrowserRouter>
@@ -37,6 +37,7 @@ const App = (props) => {
           render={({match}) => {
             const {id} = match.params;
             return (<OfferScreen
+              nearOffers={offers.slice(0, 3)}
               offer={offers.find((item) => item.id === Number(id))}
               reviews={reviews}
             />);

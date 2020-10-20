@@ -4,7 +4,7 @@ import {offerPropTypes} from "../../utils/prop-type";
 import {getUniqueCities} from "../../utils/utils";
 import FavoritesCityItem from "../favorites-city-item/favorites-city-item";
 
-const FavoritesList = ({offers}) => {
+const FavoritesCityList = ({offers}) => {
   const uniqueCities = getUniqueCities(offers);
 
   return (
@@ -23,9 +23,9 @@ const FavoritesList = ({offers}) => {
   );
 };
 
-FavoritesList.propTypes = {
+FavoritesCityList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
-export default FavoritesList;
+export default FavoritesCityList;
 
