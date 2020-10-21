@@ -15,3 +15,7 @@ export const getDate = (date) => {
     year: `numeric`,
   });
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};

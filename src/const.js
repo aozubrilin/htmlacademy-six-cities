@@ -5,3 +5,12 @@ export const OfferCardClass = {
   NEAR: `near-places`,
   FAVORITE: `favorites`,
 };
+
+export const CITIES = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`
+];
