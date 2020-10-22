@@ -2,8 +2,8 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import leaflet from "leaflet";
-import {CityCoordinate} from "../../mocks/cities";
 
+const CITY = [52.38333, 4.9];
 
 class Map extends PureComponent {
   constructor(props) {
@@ -21,8 +21,8 @@ class Map extends PureComponent {
   }
 
   init() {
-    const {offers, city} = this.props;
-    const cityCentr = CityCoordinate[city.toUpperCase()].coordinates;
+    const {offers} = this.props;
+    const cityCentr = CITY;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
@@ -60,7 +60,6 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  city: PropTypes.string.isRequired,
 };
 
 export default Map;

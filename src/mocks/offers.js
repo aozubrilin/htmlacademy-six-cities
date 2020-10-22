@@ -1,7 +1,10 @@
 export default [
   {
     id: 0,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
     title: `Beautiful & luxurious apartment at great location`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     type: `Apartment`,
@@ -34,7 +37,10 @@ export default [
   },
   {
     id: 1,
-    city: `Cologne`,
+    city: {
+      name: `Cologne`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
     title: `Wood and stone place`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `Room`,
@@ -68,7 +74,10 @@ export default [
   },
   {
     id: 2,
-    city: `Brussels`,
+    city: {
+      name: `Brussels`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
     title: `Canal View Prinsengracht`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `House`,
@@ -99,7 +108,10 @@ export default [
   },
   {
     id: 3,
-    city: `Dusseldorf`,
+    city: {
+      name: `Dusseldorf`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
     title: `White castle`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     type: `Hotel`,
@@ -135,7 +147,10 @@ export default [
   },
   {
     id: 5,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
     title: `Canal View Prinsengracht`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `House`,
@@ -166,7 +181,10 @@ export default [
   },
   {
     id: 6,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
     title: `White castle`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     type: `Hotel`,
@@ -202,7 +220,10 @@ export default [
   },
   {
     id: 7,
-    city: `Amsterdam`,
+    city: {
+      name: `Amsterdam`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
     title: `Canal View Prinsengracht`,
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     type: `House`,
