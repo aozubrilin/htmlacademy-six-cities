@@ -8,7 +8,7 @@ import CitiesList from "../cities-list/cities-list";
 import {connect} from "react-redux";
 
 const Main = (props) => {
-  const {offers, city} = props;
+  const {currentOffersCity, city} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -42,7 +42,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {city}</b>
+              <b className="places__found">{ currentOffersCity.length} places to stay in {city}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -61,14 +61,14 @@ const Main = (props) => {
 
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
-                  offers={offers}
+                  offers={currentOffersCity}
                   cardClass={OfferCardClass.MAIN}/>
               </div>
 
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={offers} city={city}/>
+                <Map offers={currentOffersCity} city={city}/>
               </section>
             </div>
           </div>
@@ -79,13 +79,13 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  currentOffersCity: PropTypes.arrayOf(offerPropTypes).isRequired,
   city: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({city, offers}) => ({
+const mapStateToProps = ({city, currentOffersCity}) => ({
   city,
-  offers
+  currentOffersCity
 });
 
 export {Main};
