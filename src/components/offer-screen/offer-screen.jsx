@@ -8,11 +8,12 @@ import ReviewsList from "../rewiews-list/rewiews-list";
 import ReviewsForm from "../review-form/reviews-form";
 import Map from "../map/map";
 import {OfferCardClass} from "../../const";
+import {connect} from "react-redux";
 
 const MAX_IMAGE_COUNT = 6;
 const MAX_REVIEWS_COUNT = 3;
 
-const OfferScreen = ({nearOffers, offer, reviews}) => {
+const OfferScreen = ({nearOffers, offer, offerReviews}) => {
   const {
     title,
     description,
@@ -28,10 +29,8 @@ const OfferScreen = ({nearOffers, offer, reviews}) => {
     isFavorite
   } = offer;
 
-  const sortedReviews = reviews.sort((a, b) => b.date - a.date);
   const ratingPercent = getRating(rating);
   const offerImages = images.slice(0, MAX_IMAGE_COUNT);
-  const offerReviews = sortedReviews.slice(0, MAX_REVIEWS_COUNT);
 
   return (
     <div className="page">
@@ -149,7 +148,7 @@ const OfferScreen = ({nearOffers, offer, reviews}) => {
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot;
                   <span className="reviews__amount">
-                    {reviews.length}
+                    {offerReviews.length}
                   </span>
                 </h2>
 
@@ -181,10 +180,23 @@ const OfferScreen = ({nearOffers, offer, reviews}) => {
   );
 };
 
+const mapStateToProps = ({offers, reviews}, ownProps) => {
+  const nearOffers = offers.slice(0, 3);
+  const offer = offers.find((item) => item.id === Number(ownProps.match.params.id));
+  const offerReviews = reviews.sort((a, b) => b.date - a.date).slice(0, MAX_REVIEWS_COUNT);
+
+  return {
+    nearOffers,
+    offerReviews,
+    offer,
+  };
+};
+
 OfferScreen.propTypes = {
   offer: offerPropTypes,
   nearOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired
+  offerReviews: PropTypes.arrayOf(reviewPropTypes).isRequired
 };
 
-export default OfferScreen;
+export {OfferScreen};
+export default connect(mapStateToProps)(OfferScreen);
