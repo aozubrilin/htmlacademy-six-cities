@@ -4,8 +4,7 @@ import {offerPropTypes} from "../../utils/prop-type";
 import FavoritesCityList from "../favorites-city-list/favorites-city-list";
 import {connect} from "react-redux";
 
-const FavoritesScreen = ({offers}) => {
-  const favoritesOffers = offers.filter((offer) => offer.isFavorite);
+const FavoritesScreen = ({favoritesOffers}) => {
 
   return (
     <div className="page">
@@ -52,17 +51,12 @@ const FavoritesScreen = ({offers}) => {
 };
 
 FavoritesScreen.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-};
-
-FavoritesScreen.propTypes = {
-  offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  favoritesOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 const mapStateToProps = ({offers}) => ({
-  offers,
+  favoritesOffers: offers.filter((offer) => offer.isFavorite),
 });
-
 
 export {FavoritesScreen};
 export default connect(mapStateToProps)(FavoritesScreen);

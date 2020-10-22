@@ -10,7 +10,7 @@ const FavoritesCityList = ({offers}) => {
   return (
     <ul className="favorite__list">
       {uniqueCities.map((city, i) => {
-        const offersByСity = offers.filter((offer) => offer.city === city);
+        const offersByСity = offers.filter((offer) => offer.city.name === city);
         return (
           <FavoritesCityItem
             city={city}
