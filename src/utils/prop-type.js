@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 export const offerPropTypes = PropTypes.shape(
     {
       id: PropTypes.number.isRequired,
-      city: PropTypes.string.isRequired,
+      city: PropTypes.shape(
+          {
+            name: PropTypes.string.isRequired,
+            coordinates: PropTypes.array.isRequired
+          }
+      ).isRequired,
       description: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
       images: PropTypes.array.isRequired,
@@ -19,6 +24,7 @@ export const offerPropTypes = PropTypes.shape(
             isProUser: PropTypes.bool.isRequired,
           }
       ).isRequired,
+      coordinates: PropTypes.array.isRequired,
       isPremium: PropTypes.bool.isRequired,
       isFavorite: PropTypes.bool.isRequired,
     }

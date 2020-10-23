@@ -5,7 +5,7 @@ export const getRating = (rating) => {
 };
 
 export const getUniqueCities = (offers) =>{
-  const cities = offers.map((offer) => offer.city);
+  const cities = offers.map((offer) => offer.city.name);
   return Array.from(new Set(cities));
 };
 
@@ -14,4 +14,8 @@ export const getDate = (date) => {
     month: `long`,
     year: `numeric`,
   });
+};
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
 };

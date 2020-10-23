@@ -2,6 +2,9 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import leaflet from "leaflet";
+import {connect} from "react-redux";
+
+const CITY = [52.38333, 4.9];
 
 class Map extends PureComponent {
   constructor(props) {
@@ -10,33 +13,42 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
+    this.init();
+  }
+
+  componentDidUpdate() {
+    this._map.remove();
+    this.init();
+  }
+
+  init() {
     const {offers} = this.props;
-    const city = [52.38333, 4.9];
+    const cityCentr = CITY;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
     const zoom = 12;
-    const map = leaflet.map(this._mapRef.current, {
-      center: city,
+    this._map = leaflet.map(this._mapRef.current, {
+      center: cityCentr,
       zoom,
       zoomControl: false,
       marker: true
     });
 
-    map.setView(city, zoom);
+    this._map.setView(cityCentr, zoom);
 
     leaflet
   .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
     attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
   })
-  .addTo(map);
+  .addTo(this._map);
 
     offers.forEach(({coordinates}) => {
       leaflet
       .marker(coordinates, {icon})
-      .addTo(map);
+      .addTo(this._map);
     });
   }
 
@@ -50,5 +62,20 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
+
+const mapStateToMainProps = ({currentOffersCity}) => ({
+  offers: currentOffersCity,
+});
+
+const mapStateToNearestsProps = ({offers}) => {
+  const nearOffers = offers.slice(0, 3);
+
+  return {
+    offers: nearOffers,
+  };
+};
+
+export const MainMap = connect(mapStateToMainProps)(Map);
+export const OfferMap = connect(mapStateToNearestsProps)(Map);
 
 export default Map;

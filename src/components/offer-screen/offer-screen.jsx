@@ -3,16 +3,18 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
-import OffersList from "../offers-list/offers-list";
+import {NearestsOffersList} from "../offers-list/offers-list";
 import ReviewsList from "../rewiews-list/rewiews-list";
 import ReviewsForm from "../review-form/reviews-form";
-import Map from "../map/map";
+import {OfferMap} from "../map/map";
 import {OfferCardClass} from "../../const";
+import {connect} from "react-redux";
 
 const MAX_IMAGE_COUNT = 6;
 const MAX_REVIEWS_COUNT = 3;
 
-const OfferScreen = ({nearOffers, offer, reviews}) => {
+const OfferScreen = ({offer, offerReviews}) => {
+
   const {
     title,
     description,
@@ -28,10 +30,8 @@ const OfferScreen = ({nearOffers, offer, reviews}) => {
     isFavorite
   } = offer;
 
-  const sortedReviews = reviews.sort((a, b) => b.date - a.date);
   const ratingPercent = getRating(rating);
   const offerImages = images.slice(0, MAX_IMAGE_COUNT);
-  const offerReviews = sortedReviews.slice(0, MAX_REVIEWS_COUNT);
 
   return (
     <div className="page">
@@ -149,7 +149,7 @@ const OfferScreen = ({nearOffers, offer, reviews}) => {
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot;
                   <span className="reviews__amount">
-                    {reviews.length}
+                    {offerReviews.length}
                   </span>
                 </h2>
 
@@ -163,16 +163,14 @@ const OfferScreen = ({nearOffers, offer, reviews}) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={nearOffers} />
+            <OfferMap />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList
-                offers={nearOffers}
-                cardClass={OfferCardClass.NEAR}/>
+              <NearestsOffersList cardClass={OfferCardClass.NEAR} />
             </div>
           </section>
         </div>
@@ -181,10 +179,20 @@ const OfferScreen = ({nearOffers, offer, reviews}) => {
   );
 };
 
-OfferScreen.propTypes = {
-  offer: offerPropTypes,
-  nearOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  reviews: PropTypes.arrayOf(reviewPropTypes).isRequired
+const mapStateToProps = ({offers, reviews}, ownProps) => {
+  const offer = offers.find((item) => item.id === Number(ownProps.match.params.id));
+  const offerReviews = reviews.sort((a, b) => b.date - a.date).slice(0, MAX_REVIEWS_COUNT);
+
+  return {
+    offerReviews,
+    offer,
+  };
 };
 
-export default OfferScreen;
+OfferScreen.propTypes = {
+  offer: offerPropTypes,
+  offerReviews: PropTypes.arrayOf(reviewPropTypes).isRequired
+};
+
+export {OfferScreen};
+export default connect(mapStateToProps)(OfferScreen);
