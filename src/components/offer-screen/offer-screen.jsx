@@ -3,17 +3,18 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
-import OffersList from "../offers-list/offers-list";
+import {NearestsOffersList} from "../offers-list/offers-list";
 import ReviewsList from "../rewiews-list/rewiews-list";
 import ReviewsForm from "../review-form/reviews-form";
-import Map from "../map/map";
+import {OfferMap} from "../map/map";
 import {OfferCardClass} from "../../const";
 import {connect} from "react-redux";
 
 const MAX_IMAGE_COUNT = 6;
 const MAX_REVIEWS_COUNT = 3;
 
-const OfferScreen = ({nearOffers, offer, offerReviews}) => {
+const OfferScreen = ({offer, offerReviews}) => {
+
   const {
     title,
     description,
@@ -162,16 +163,14 @@ const OfferScreen = ({nearOffers, offer, offerReviews}) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={[offer, ...nearOffers]} />
+            <OfferMap />
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList
-                offers={nearOffers}
-                cardClass={OfferCardClass.NEAR}/>
+              <NearestsOffersList cardClass={OfferCardClass.NEAR} />
             </div>
           </section>
         </div>
@@ -181,12 +180,10 @@ const OfferScreen = ({nearOffers, offer, offerReviews}) => {
 };
 
 const mapStateToProps = ({offers, reviews}, ownProps) => {
-  const nearOffers = offers.slice(0, 3);
   const offer = offers.find((item) => item.id === Number(ownProps.match.params.id));
   const offerReviews = reviews.sort((a, b) => b.date - a.date).slice(0, MAX_REVIEWS_COUNT);
 
   return {
-    nearOffers,
     offerReviews,
     offer,
   };
@@ -194,7 +191,6 @@ const mapStateToProps = ({offers, reviews}, ownProps) => {
 
 OfferScreen.propTypes = {
   offer: offerPropTypes,
-  nearOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   offerReviews: PropTypes.arrayOf(reviewPropTypes).isRequired
 };
 

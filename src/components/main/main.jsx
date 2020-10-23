@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import OffersList from "../offers-list/offers-list";
+import {MainOffersList} from "../offers-list/offers-list";
 import {offerPropTypes} from "../../utils/prop-type";
 import {OfferCardClass} from "../../const";
-import Map from "../map/map";
+import {MainMap} from "../map/map";
 import CitiesList from "../cities-list/cities-list";
 import {connect} from "react-redux";
 
@@ -60,7 +60,7 @@ const Main = (props) => {
               </form>
 
               <div className="cities__places-list places__list tabs__content">
-                <OffersList
+                <MainOffersList
                   offers={currentOffersCity}
                   cardClass={OfferCardClass.MAIN}/>
               </div>
@@ -68,7 +68,7 @@ const Main = (props) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={currentOffersCity} />
+                <MainMap />
               </section>
             </div>
           </div>

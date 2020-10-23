@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import leaflet from "leaflet";
+import {connect} from "react-redux";
 
 const CITY = [52.38333, 4.9];
 
@@ -61,5 +62,20 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
+
+const mapStateToMainProps = ({currentOffersCity}) => ({
+  offers: currentOffersCity,
+});
+
+const mapStateToNearestsProps = ({offers}) => {
+  const nearOffers = offers.slice(0, 3);
+
+  return {
+    offers: nearOffers,
+  };
+};
+
+export const MainMap = connect(mapStateToMainProps)(Map);
+export const OfferMap = connect(mapStateToNearestsProps)(Map);
 
 export default Map;
