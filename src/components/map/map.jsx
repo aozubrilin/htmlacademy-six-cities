@@ -22,10 +22,14 @@ class Map extends PureComponent {
   }
 
   init() {
-    const {offers} = this.props;
+    const {offers, activeOfferId} = this.props;
     const cityCentr = CITY;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+    const activeIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
       iconSize: [30, 30]
     });
 
@@ -45,9 +49,10 @@ class Map extends PureComponent {
   })
   .addTo(this._map);
 
-    offers.forEach(({coordinates}) => {
+    offers.forEach(({coordinates, id}) => {
+      const currentIcon = activeOfferId === id ? activeIcon : icon;
       leaflet
-      .marker(coordinates, {icon})
+      .marker(coordinates, {icon: currentIcon})
       .addTo(this._map);
     });
   }
@@ -61,17 +66,20 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  activeOfferId: PropTypes.number.isRequired,
 };
 
-const mapStateToMainProps = ({currentOffers}) => ({
+const mapStateToMainProps = ({currentOffers, activeOfferId}) => ({
   offers: currentOffers,
+  activeOfferId,
 });
 
-const mapStateToNearestsProps = ({offers}) => {
+const mapStateToNearestsProps = ({offers, activeOfferId}) => {
   const nearOffers = offers.slice(0, 3);
 
   return {
     offers: nearOffers,
+    activeOfferId,
   };
 };
 

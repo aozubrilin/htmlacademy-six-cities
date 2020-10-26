@@ -4,8 +4,10 @@ import {Link} from "react-router-dom";
 import {offerPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
 import {OfferCardClass} from "../../const";
+import {ActionCreator} from "../../store/action";
+import {connect} from "react-redux";
 
-const OfferCard = ({offer, handlePlaceCardMouseEnter, handlePlaceCardMouseLeave, cardClass}) => {
+const OfferCard = ({offer, cardClass, onChangeOfferId}) => {
   const {id, title, type, images, rating, price, isPremium, isFavorite} = offer;
   const [firstImage] = images;
 
@@ -16,10 +18,10 @@ const OfferCard = ({offer, handlePlaceCardMouseEnter, handlePlaceCardMouseLeave,
     <article
       className={`${cardClass === `cities` ? `${cardClass}__place-card` : `${cardClass}__card`} place-card `}
       onMouseEnter={() => {
-        handlePlaceCardMouseEnter(offer);
+        onChangeOfferId(offer.id);
       }}
       onMouseLeave={() => {
-        handlePlaceCardMouseLeave();
+        onChangeOfferId(-1);
       }}
     >
       {isPremium ?
@@ -67,8 +69,14 @@ const OfferCard = ({offer, handlePlaceCardMouseEnter, handlePlaceCardMouseLeave,
 OfferCard.propTypes = {
   cardClass: PropTypes.string.isRequired,
   offer: offerPropTypes,
-  handlePlaceCardMouseEnter: PropTypes.func.isRequired,
-  handlePlaceCardMouseLeave: PropTypes.func.isRequired
+  onChangeOfferId: PropTypes.func.isRequired,
 };
 
-export default OfferCard;
+const mapDispatchToProps = (dispatch) => ({
+  onChangeOfferId(offerId) {
+    dispatch(ActionCreator.setActiveOfferId(offerId));
+  },
+});
+
+export {OfferCard};
+export default connect(null, mapDispatchToProps)(OfferCard);

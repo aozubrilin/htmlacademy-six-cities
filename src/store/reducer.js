@@ -12,6 +12,7 @@ const initialState = {
   currentOffers: defaultOffers,
   cities: CITIES,
   currentSortType: SortType.POPULAR,
+  activeOfferId: -1,
   reviews,
   offers,
 };
@@ -27,6 +28,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         currentSortType: action.payload,
         currentOffers: getFilteredOffers(offers, state.city, action.payload),
+      });
+    case ActionType.SET_ACTIVE_OFFER_ID:
+      return extend(state, {
+        activeOfferId: action.payload,
       });
   }
   return state;
