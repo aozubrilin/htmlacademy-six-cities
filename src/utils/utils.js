@@ -1,4 +1,4 @@
-import {STAR_TO_PERSENT} from "../const";
+import {STAR_TO_PERSENT, SortType} from "../const";
 
 export const getRating = (rating) => {
   return Math.round(rating) * STAR_TO_PERSENT;
@@ -18,4 +18,29 @@ export const getDate = (date) => {
 
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
+};
+
+const getSortedOffers = (offers, sortType) => {
+  switch (sortType) {
+    case SortType.POPULAR:
+      return offers.slice();
+    case SortType.TO_HIGHT:
+      return offers.slice().sort((a, b) => a.price - b.price);
+    case SortType.TO_LOW:
+      return offers.slice().sort((a, b) => b.price - a.price);
+    case SortType.TOP_RATE:
+      return offers.slice().sort((a, b) => b.rating - a.rating);
+  }
+  return offers;
+};
+
+const getOffersByCity = (offers, city) => {
+  return offers.filter((offer) => offer.city.name === city);
+};
+
+export const getFilteredOffers = (offers, city, sortType) => {
+  const offersByCity = getOffersByCity(offers, city);
+  const sortedOffers = getSortedOffers(offersByCity, sortType);
+
+  return sortedOffers;
 };
