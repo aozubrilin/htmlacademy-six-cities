@@ -63,8 +63,8 @@ Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
-const mapStateToMainProps = ({currentOffersCity}) => ({
-  offers: currentOffersCity,
+const mapStateToMainProps = ({currentOffers}) => ({
+  offers: currentOffers,
 });
 
 const mapStateToNearestsProps = ({offers}) => {

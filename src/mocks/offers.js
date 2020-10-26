@@ -146,6 +146,45 @@ export default [
     isFavorite: true,
   },
   {
+    id: 11,
+    city: {
+      name: `Dusseldorf`,
+      coordinates: [52.3909553943508, 4.85309666406198],
+    },
+    title: `White castle`,
+    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+    type: `Hotel`,
+    images: [
+      `img/room.jpg`,
+      `img/apartment-03.jpg`,
+      `img/apartment-02.jpg`,
+      `img/apartment-03.jpg`,
+      `img/apartment-01.jpg`
+    ],
+    rating: 5,
+    bedroomsCount: 4,
+    adultsCount: 4,
+    price: 100,
+    features: [
+      `Wi-Fi`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`
+    ],
+    host: {
+      name: `Bob`,
+      avatar: `img/avatar.svg`,
+      isProUser: true,
+    },
+    coordinates: [51.22, 6.78],
+    isPremium: false,
+    isFavorite: true,
+  },
+  {
     id: 5,
     city: {
       name: `Amsterdam`,

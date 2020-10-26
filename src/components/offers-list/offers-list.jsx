@@ -47,14 +47,14 @@ OffersList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
-const mapStateToMainProps = ({currentOffersCity}) => ({
-  offers: currentOffersCity,
+const mapStateToMainProps = ({currentOffers}) => ({
+  offers: currentOffers,
 });
 
-const mapStateToNearestsProps = ({currentOffersCity}) => {
+const mapStateToNearestsProps = ({currentOffers}) => {
 
   return {
-    offers: currentOffersCity,
+    offers: currentOffers,
   };
 };
 
