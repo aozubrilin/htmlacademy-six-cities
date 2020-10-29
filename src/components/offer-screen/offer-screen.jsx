@@ -5,9 +5,10 @@ import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
 import {NearestsOffersList} from "../offers-list/offers-list";
 import ReviewsList from "../rewiews-list/rewiews-list";
-import ReviewsForm from "../review-form/reviews-form";
+import ReviewForm from "../review-form/review-form";
 import {OfferMap} from "../map/map";
 import {OfferCardClass} from "../../const";
+import withReviewForm from "../../hocs/with-review-form/with-review-form";
 import {connect} from "react-redux";
 
 const MAX_IMAGE_COUNT = 6;
@@ -32,6 +33,7 @@ const OfferScreen = ({offer, offerReviews}) => {
 
   const ratingPercent = getRating(rating);
   const offerImages = images.slice(0, MAX_IMAGE_COUNT);
+  const ReviewFormWrapper = withReviewForm(ReviewForm);
 
   return (
     <div className="page">
@@ -157,7 +159,7 @@ const OfferScreen = ({offer, offerReviews}) => {
                   reviews={offerReviews}
                 />
 
-                <ReviewsForm/>
+                <ReviewFormWrapper/>
 
               </section>
             </div>
