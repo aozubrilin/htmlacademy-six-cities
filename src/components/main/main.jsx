@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {MainOffersList} from "../offers-list/offers-list";
 import {offerPropTypes} from "../../utils/prop-type";
@@ -7,38 +7,43 @@ import {MainMap} from "../map/map";
 import CitiesList from "../cities-list/cities-list";
 import Sorting from "../sorting/sorting";
 import Header from "../header/header";
+import MainEmpty from "../main-empty/main-empty";
 import withOpen from "../../hocs/withOpen/withOpen";
 import {connect} from "react-redux";
 
 const SortingWrapper = withOpen(Sorting);
 
-const Main = ({currentOffers, city}) => {
+const Main = ({currentOffers, city, isOffersEmpty}) => {
   return (
-    <div className="page page--gray page--main">
+    <div className={`page page--gray page--main ${isOffersEmpty ? `page__main--index-empty` : ``}`}>
       <Header/>
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CitiesList />
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{currentOffers.length} places to stay in {city}</b>
-              <SortingWrapper/>
+          <div className={`cities__places-container container ${isOffersEmpty ? `cities__places-container--empty` : ``}`}>
+            {isOffersEmpty ?
+              <MainEmpty city={city}/> :
+              <Fragment>
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">{currentOffers.length} places to stay in {city}</b>
+                  <SortingWrapper/>
+                  <div className="cities__places-list places__list tabs__content">
+                    <MainOffersList
+                      offers={currentOffers}
+                      cardClass={OfferCardClass.MAIN}/>
+                  </div>
 
-              <div className="cities__places-list places__list tabs__content">
-                <MainOffersList
-                  offers={currentOffers}
-                  cardClass={OfferCardClass.MAIN}/>
-              </div>
-
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <MainMap />
-              </section>
-            </div>
+                </section>
+                <div className="cities__right-section">
+                  <section className="cities__map map">
+                    <MainMap />
+                  </section>
+                </div>
+              </Fragment>
+            }
           </div>
         </div>
       </main>
@@ -48,13 +53,19 @@ const Main = ({currentOffers, city}) => {
 
 Main.propTypes = {
   currentOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  city: PropTypes.string.isRequired
+  city: PropTypes.string.isRequired,
+  isOffersEmpty: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = ({city, currentOffers}) => ({
-  city,
-  currentOffers
-});
+const mapStateToProps = ({city, currentOffers}) => {
+  const isOffersEmpty = currentOffers.length === 0;
+
+  return {
+    city,
+    currentOffers,
+    isOffersEmpty,
+  };
+};
 
 export {Main};
 export default connect(mapStateToProps)(Main);
