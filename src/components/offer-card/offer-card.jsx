@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {offerPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
 import {OfferCardClass} from "../../const";
-import {ActionCreator} from "../../store/action";
+import {setActiveOfferId} from "../../store/action";
 import {connect} from "react-redux";
 
 const OfferCard = ({offer, cardClass, onChangeOfferId}) => {
@@ -74,7 +74,7 @@ OfferCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeOfferId(offerId) {
-    dispatch(ActionCreator.setActiveOfferId(offerId));
+    dispatch(setActiveOfferId(offerId));
   },
 });
 

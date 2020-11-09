@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {SortType} from "../../const";
-import {ActionCreator} from "../../store/action";
+import {setSortedType} from "../../store/action";
 import {connect} from "react-redux";
 
 
@@ -50,7 +50,7 @@ const mapStateToProps = ({currentSortType}) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeSortedType(sortedType) {
-    dispatch(ActionCreator.setSortedType(sortedType));
+    dispatch(setSortedType(sortedType));
   },
 });
 
