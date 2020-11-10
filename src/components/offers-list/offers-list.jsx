@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import OfferCard from "../offer-card/offer-card";
 import {connect} from "react-redux";
+import {getCurrentOffers} from "../../store/selectors";
 
 
 const OffersList = ({offers, cardClass}) => {
@@ -23,12 +24,12 @@ OffersList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
-const mapStateToMainProps = ({currentOffers}) => ({
-  offers: currentOffers,
+const mapStateToMainProps = ({data, app}) => ({
+  offers: getCurrentOffers({data, app}),
 });
 
-const mapStateToNearestsProps = ({offers}) => {
-  const nearOffers = offers.slice(0, 3);
+const mapStateToNearestsProps = ({data}) => {
+  const nearOffers = data.offers.slice(0, 3);
 
   return {
     offers: nearOffers,

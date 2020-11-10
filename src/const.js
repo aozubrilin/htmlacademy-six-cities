@@ -29,3 +29,15 @@ export const ratingReview = [
   {title: `badly`, value: `2`},
   {title: `terribly`, value: `1`},
 ];
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export const APIRoute = {
+  OFFERS: `/hotels`,
+  FAVORITE: `/favorite`,
+  COMMENTS: `/comments`,
+  LOGIN: `/login`,
+};
