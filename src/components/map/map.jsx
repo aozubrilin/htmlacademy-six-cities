@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import leaflet from "leaflet";
 import {connect} from "react-redux";
+import {getCurrentOffers} from "../../store/selectors";
 
-const CITY = [52.38333, 4.9];
 
 class Map extends PureComponent {
   constructor(props) {
@@ -23,7 +23,8 @@ class Map extends PureComponent {
 
   init() {
     const {offers, activeOfferId} = this.props;
-    const cityCentr = CITY;
+    const [firstOffer] = offers;
+    const cityCentr = firstOffer.city.coordinates;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
@@ -33,7 +34,7 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
 
-    const zoom = 12;
+    const zoom = firstOffer.city.zoom;
     this._map = leaflet.map(this._mapRef.current, {
       center: cityCentr,
       zoom,
@@ -69,9 +70,9 @@ Map.propTypes = {
   activeOfferId: PropTypes.number.isRequired,
 };
 
-const mapStateToMainProps = ({currentOffers, activeOfferId}) => ({
-  offers: currentOffers,
-  activeOfferId,
+const mapStateToMainProps = ({data, app}) => ({
+  offers: getCurrentOffers({data, app}),
+  activeOfferId: app.activeOfferId,
 });
 
 const mapStateToNearestsProps = ({offers, activeOfferId}) => {

@@ -6,7 +6,8 @@ export const offerPropTypes = PropTypes.shape(
       city: PropTypes.shape(
           {
             name: PropTypes.string.isRequired,
-            coordinates: PropTypes.array.isRequired
+            coordinates: PropTypes.array.isRequired,
+            zoom: PropTypes.number.isRequired,
           }
       ).isRequired,
       description: PropTypes.string.isRequired,
@@ -21,9 +22,11 @@ export const offerPropTypes = PropTypes.shape(
           {
             name: PropTypes.string.isRequired,
             avatar: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired,
             isProUser: PropTypes.bool.isRequired,
           }
       ).isRequired,
+      previewImage: PropTypes.string.isRequired,
       coordinates: PropTypes.array.isRequired,
       isPremium: PropTypes.bool.isRequired,
       isFavorite: PropTypes.bool.isRequired,

@@ -10,6 +10,7 @@ import Header from "../header/header";
 import MainEmpty from "../main-empty/main-empty";
 import withOpen from "../../hocs/withOpen/withOpen";
 import {connect} from "react-redux";
+import {getCurrentOffers} from "../../store/selectors";
 
 const SortingWrapper = withOpen(Sorting);
 
@@ -57,14 +58,14 @@ Main.propTypes = {
   isOffersEmpty: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = ({city, currentOffers}) => {
-  const isOffersEmpty = currentOffers.length === 0;
+const mapStateToProps = ({data, app}) => {
+  const isOffersEmpty = data.offers.length === 0;
 
-  return {
-    city,
-    currentOffers,
+  return ({
+    currentOffers: getCurrentOffers({data, app}),
+    city: app.city,
     isOffersEmpty,
-  };
+  });
 };
 
 export {Main};
