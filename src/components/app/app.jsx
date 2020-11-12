@@ -1,15 +1,17 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
-import FavoritesScreen from '../favorites-screen/favorites-screen';
-import OfferScreen from '../offer-screen/offer-screen';
+import FavoritesScreen from "../favorites-screen/favorites-screen";
+import OfferScreen from "../offer-screen/offer-screen";
+import PrivateRoute from "../private-route/private-route";
+import browserHistory from "../../browser-history";
 
 
 const App = () => {
 
   return (
-    <BrowserRouter>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact path="/">
           <Main/>
@@ -17,12 +19,12 @@ const App = () => {
         <Route exact path="/login">
           <AuthScreen/>
         </Route>
-        <Route exact path="/favorites">
+        <PrivateRoute exact path="/favorites">
           <FavoritesScreen/>
-        </Route>
+        </PrivateRoute>
         <Route exact path="/offer/:id" component={OfferScreen}/>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

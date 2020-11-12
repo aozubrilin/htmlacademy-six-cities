@@ -8,6 +8,7 @@ import {createAPI} from "./services/api";
 import {fetchOffersList, checkAuth} from "./store/api-actions";
 import App from "./components/app/app";
 import rootReducer from "./store/reducers/root-reducer";
+import PrivateRoute from "../private-route/private-route";
 import {requireAuthorization} from "./store/action";
 import {AuthorizationStatus} from "./const";
 

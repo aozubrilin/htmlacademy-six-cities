@@ -8,6 +8,7 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_NEAR_OFFERS: `LOAD_NEAR_OFFERS`,
   LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
 export const changeCity = (city) => ({
@@ -55,4 +56,8 @@ export const loadFavoriteOffers = (offers) => ({
   payload: offers,
 });
 
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
+});
 
