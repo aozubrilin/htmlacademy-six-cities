@@ -36,10 +36,16 @@ export const offerPropTypes = PropTypes.shape(
 export const reviewPropTypes = PropTypes.shape(
     {
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
       date: PropTypes.object.isRequired,
-      text: PropTypes.string.isRequired
+      text: PropTypes.string.isRequired,
+      rating: PropTypes.number.isRequired,
+      user: PropTypes.shape(
+          {
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            avatar: PropTypes.string.isRequired,
+            isProUser: PropTypes.bool.isRequired,
+          }
+      ).isRequired,
     }
 ).isRequired;

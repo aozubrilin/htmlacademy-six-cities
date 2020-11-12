@@ -75,8 +75,9 @@ const mapStateToMainProps = ({data, app}) => ({
   activeOfferId: app.activeOfferId,
 });
 
-const mapStateToNearestsProps = ({offers, activeOfferId}) => {
-  const nearOffers = offers.slice(0, 3);
+const mapStateToNearestsProps = ({data, app}) => {
+  const nearOffers = data.nearOffers.slice(0, 3);
+  const activeOfferId = app.activeOfferId;
 
   return {
     offers: nearOffers,

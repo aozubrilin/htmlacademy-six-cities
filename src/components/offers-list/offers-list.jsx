@@ -29,7 +29,7 @@ const mapStateToMainProps = ({data, app}) => ({
 });
 
 const mapStateToNearestsProps = ({data}) => {
-  const nearOffers = data.offers.slice(0, 3);
+  const nearOffers = data.nearOffers;
 
   return {
     offers: nearOffers,

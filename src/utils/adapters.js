@@ -29,3 +29,20 @@ export const adaptToClientOffer = (data) => {
 };
 
 export const getAdaptedOffers = (dataArray) => dataArray.map((it) => adaptToClientOffer(it));
+
+export const adaptToClientReview = (data) => {
+  return {
+    id: data.id,
+    date: new Date(data.date),
+    text: data.comment,
+    rating: data.rating,
+    user: {
+      id: data.user.id,
+      avatar: data.user.avatar_url,
+      isProUser: data.user.is_pro,
+      name: data.user.name,
+    },
+  };
+};
+
+export const getAdaptedReviews = (dataArray) => dataArray.map((it) => adaptToClientReview(it));

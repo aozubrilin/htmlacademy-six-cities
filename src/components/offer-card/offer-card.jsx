@@ -8,8 +8,7 @@ import {setActiveOfferId} from "../../store/action";
 import {connect} from "react-redux";
 
 const OfferCard = ({offer, cardClass, onChangeOfferId}) => {
-  const {id, title, type, images, rating, price, isPremium, isFavorite} = offer;
-  const [firstImage] = images;
+  const {id, title, type, previewImage, rating, price, isPremium, isFavorite} = offer;
 
   const isFavoriteScreen = cardClass === OfferCardClass.FAVORITE;
   const ratingPercent = getRating(rating);
@@ -32,7 +31,7 @@ const OfferCard = ({offer, cardClass, onChangeOfferId}) => {
       <div className={`${cardClass}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${id}`}>
           <img className="place-card__image"
-            src={firstImage}
+            src={previewImage}
             width={isFavoriteScreen ? `150` : `260`}
             height={isFavoriteScreen ? `110` : `200`}
             alt="Place image" />
