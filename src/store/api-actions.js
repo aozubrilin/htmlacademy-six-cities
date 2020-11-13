@@ -1,6 +1,6 @@
-import {loadOffers, loadReviews, requireAuthorization, loadNearOffers, loadFavoriteOffers, loadCurrentOffer} from "./action";
+import {loadOffers, loadReviews, requireAuthorization, loadNearOffers, loadFavoriteOffers, loadCurrentOffer, loadUser} from "./action";
 import {APIRoute, AuthorizationStatus} from "../const";
-import {getAdaptedOffers, adaptToClientOffer, getAdaptedReviews} from "../utils/adapters";
+import {getAdaptedOffers, adaptToClientOffer, getAdaptedReviews, adaptToClientUser} from "../utils/adapters";
 
 
 export const fetchOffersList = () => (dispatch, _getState, api) => (
@@ -26,13 +26,21 @@ export const fetchReviews = (offerId) => (dispatch, _getState, api) => (
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch(() => {})
+    .then(({data}) => {
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(loadUser(adaptToClientUser(data)));
+    })
+    .catch((err) => {
+      throw err;
+    })
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+  .then(({data}) => {
+    dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    dispatch(loadUser(adaptToClientUser(data)));
+  })
 );
 
 export const fetchNearOffers = (offerId) => (dispatch, _getState, api) => (

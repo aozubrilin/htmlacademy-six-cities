@@ -12,14 +12,9 @@ const PrivateRoute = (props) => {
     <Route
       path={path}
       exact={exact}
-      render={(routeProps) => {
-        return (
-          render(routeProps)
-        );
-      }}
+      render={render}
     /> : <Redirect to={`/login`} />;
 };
-
 
 PrivateRoute.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
@@ -28,8 +23,8 @@ PrivateRoute.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.USER.authorizationStatus,
+const mapStateToProps = ({user}) => ({
+  authorizationStatus: user.authorizationStatus,
 });
 
 

@@ -46,3 +46,12 @@ export const adaptToClientReview = (data) => {
 };
 
 export const getAdaptedReviews = (dataArray) => dataArray.map((it) => adaptToClientReview(it));
+
+export const adaptToClientUser = (data) => {
+  return {
+    id: data.id,
+    email: data.email,
+    avatar: data.avatar_url,
+    isProUser: data.is_pro,
+  };
+};

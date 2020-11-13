@@ -44,3 +44,11 @@ export const getFilteredOffers = (offers, city, sortType) => {
 
   return sortedOffers;
 };
+
+export const getSortedReviewsByDate = (reviews) => {
+  if (reviews.length < 1) {
+    return reviews;
+  }
+
+  return reviews.slice().sort((a, b) => b.date - a.date);
+};

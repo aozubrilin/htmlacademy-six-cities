@@ -5,6 +5,7 @@ import {AuthorizationStatus} from "../../../const";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  userInfo: {},
 };
 
 const user = (state = initialState, action) => {
@@ -12,6 +13,10 @@ const user = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.LOAD_USER:
+      return extend(state, {
+        userInfo: action.payload,
       });
   }
   return state;

@@ -1,11 +1,11 @@
 import {createSelector} from "reselect";
-import {getFilteredOffers} from "../utils/utils";
+import {getFilteredOffers, getSortedReviewsByDate} from "../utils/utils";
 
 
-export const getOffers = (({data}) => data.offers);
+const getOffers = (({data}) => data.offers);
+const getReviews = (({data}) => data.reviews);
 const getCity = (({app}) => app.city);
 const getSortingType = (({app}) => app.currentSortType);
-
 
 export const getCurrentOffers = createSelector(
     getOffers,
@@ -13,5 +13,12 @@ export const getCurrentOffers = createSelector(
     getSortingType,
     (offers, currentCity, currentSortType) => {
       return getFilteredOffers(offers, currentCity, currentSortType);
+    }
+);
+
+export const getSortedReviews = createSelector(
+    getReviews,
+    (reviews) => {
+      return getSortedReviewsByDate(reviews);
     }
 );

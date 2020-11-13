@@ -7,10 +7,11 @@ import ReviewsList from "../rewiews-list/rewiews-list";
 import ReviewForm from "../review-form/review-form";
 import Header from "../header/header";
 import {OfferMap} from "../map/map";
-import {OfferCardClass} from "../../const";
+import {OfferCardClass, AuthorizationStatus} from "../../const";
 import withReviewForm from "../../hocs/with-review-form/with-review-form";
 import {fetchIdOffer, fetchReviews, fetchNearOffers} from "../../store/api-actions";
 import {connect} from "react-redux";
+import {getSortedReviews} from "../../store/selectors";
 
 const MAX_IMAGE_COUNT = 6;
 const ReviewFormWrapper = withReviewForm(ReviewForm);
@@ -38,7 +39,7 @@ class OfferScreen extends PureComponent {
   }
 
   render() {
-    const {offer, offerReviews} = this.props;
+    const {offer, offerReviews, isAuthorizedStatus} = this.props;
     const {
       id,
       title,
@@ -155,7 +156,8 @@ class OfferScreen extends PureComponent {
                     </span>
                   </h2>
                   <ReviewsList reviews={offerReviews} />
-                  <ReviewFormWrapper/>
+                  {isAuthorizedStatus ?
+                    <ReviewFormWrapper/> : false}
                 </section>
               </div>
             </div>
@@ -184,18 +186,20 @@ OfferScreen.propTypes = {
   loadOfferAction: PropTypes.func.isRequired,
   loadNearOffersAction: PropTypes.func.isRequired,
   loadReviewsAction: PropTypes.func.isRequired,
+  isAuthorizedStatus: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({data}, ownProps) => {
+const mapStateToProps = ({data, user}, ownProps) => {
   const offerId = Number(ownProps.match.params.id);
   const offer = data.currentOffer;
-  const offerReviews = data.reviews;
-
+  const offerReviews = getSortedReviews({data});
+  const isAuthorizedStatus = user.authorizationStatus === AuthorizationStatus.AUTH;
 
   return {
     offerReviews,
     offer,
     offerId,
+    isAuthorizedStatus,
   };
 };
 

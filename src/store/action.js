@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_NEAR_OFFERS: `LOAD_NEAR_OFFERS`,
   LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  LOAD_USER: `LOAD_USER`,
 };
 
 export const changeCity = (city) => ({
@@ -59,5 +60,10 @@ export const loadFavoriteOffers = (offers) => ({
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
+});
+
+export const loadUser = (userInfo) => ({
+  type: ActionType.LOAD_USER,
+  payload: userInfo,
 });
 

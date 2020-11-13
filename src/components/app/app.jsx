@@ -19,9 +19,15 @@ const App = () => {
         <Route exact path="/login">
           <AuthScreen/>
         </Route>
-        <PrivateRoute exact path="/favorites">
-          <FavoritesScreen/>
-        </PrivateRoute>
+        <PrivateRoute
+          exact
+          path="/favorites"
+          render={() => {
+            return (
+              <FavoritesScreen/>
+            );
+          }}
+        />
         <Route exact path="/offer/:id" component={OfferScreen}/>
       </Switch>
     </Router>
