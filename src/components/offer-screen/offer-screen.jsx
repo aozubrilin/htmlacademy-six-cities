@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
 import {NearestsOffersList} from "../offers-list/offers-list";
@@ -12,6 +13,7 @@ import withReviewForm from "../../hocs/with-review-form/with-review-form";
 import {fetchIdOffer, fetchReviews, fetchNearOffers} from "../../store/api-actions";
 import {connect} from "react-redux";
 import {getSortedReviews} from "../../store/selectors";
+
 
 const MAX_IMAGE_COUNT = 6;
 const ReviewFormWrapper = withReviewForm(ReviewForm);
@@ -39,7 +41,7 @@ class OfferScreen extends PureComponent {
   }
 
   render() {
-    const {offer, offerReviews, isAuthorizedStatus} = this.props;
+    const {offer, offerReviews, isAuthorizedStatus, nearOffers} = this.props;
     const {
       id,
       title,
@@ -162,7 +164,8 @@ class OfferScreen extends PureComponent {
               </div>
             </div>
             <section className="property__map map">
-              <OfferMap />
+              {nearOffers.length !== 0 ?
+                <OfferMap /> : false}
             </section>
           </section>
           <div className="container">
@@ -187,6 +190,7 @@ OfferScreen.propTypes = {
   loadNearOffersAction: PropTypes.func.isRequired,
   loadReviewsAction: PropTypes.func.isRequired,
   isAuthorizedStatus: PropTypes.bool.isRequired,
+  nearOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
 const mapStateToProps = ({data, user}, ownProps) => {
@@ -194,12 +198,14 @@ const mapStateToProps = ({data, user}, ownProps) => {
   const offer = data.currentOffer;
   const offerReviews = getSortedReviews({data});
   const isAuthorizedStatus = user.authorizationStatus === AuthorizationStatus.AUTH;
+  const nearOffers = data.nearOffers;
 
   return {
     offerReviews,
     offer,
     offerId,
     isAuthorizedStatus,
+    nearOffers,
   };
 };
 
