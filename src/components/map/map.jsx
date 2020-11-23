@@ -4,6 +4,7 @@ import {offerPropTypes} from "../../utils/prop-type";
 import leaflet from "leaflet";
 import {connect} from "react-redux";
 import {getCurrentOffers} from "../../store/selectors";
+import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 
 class Map extends PureComponent {
@@ -68,24 +69,23 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   activeOfferId: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToMainProps = ({data, app}) => ({
   offers: getCurrentOffers({data, app}),
   activeOfferId: app.activeOfferId,
+  isLoading: data.isLoadedOffers,
 });
 
-const mapStateToNearestsProps = ({data, app}) => {
-  const nearOffers = data.nearOffers.slice(0, 3);
-  const activeOfferId = app.activeOfferId;
+const mapStateToNearestsProps = ({data, app}) => ({
+  offers: data.nearOffers.slice(0, 3),
+  activeOfferId: app.activeOfferId,
+  isLoading: data.isLoadedNearOffers,
+});
 
-  return {
-    offers: nearOffers,
-    activeOfferId,
-  };
-};
 
-export const MainMap = connect(mapStateToMainProps)(Map);
-export const OfferMap = connect(mapStateToNearestsProps)(Map);
+export const MainMap = connect(mapStateToMainProps)(withSpinner(Map));
+export const OfferMap = connect(mapStateToNearestsProps)(withSpinner(Map));
 
 export default Map;

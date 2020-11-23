@@ -10,6 +10,13 @@ export const ActionType = {
   LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_USER: `LOAD_USER`,
+  IS_LOADED_NEAR_OFFERS: `IS_LOADED_NEAR_OFFERS`,
+  IS_LOADED_CURRENT_OFFER: `IS_LOADED_CURRENT_OFFER`,
+  IS_LOADED_OFFERS: `IS_LOADED_OFFERS`,
+  IS_LOADED_REVIEWS: `IS_LOADED_REVIEWS`,
+  IS_LOADED_FAVORITE_OFFERS: `IS_LOADED_FAVORITE_OFFERS`,
+  SET_FETCH_ERROR: `SET_FETCH_ERROR`,
+  CLOSE_ALERT: `CLOSE_ALERT`,
 };
 
 export const changeCity = (city) => ({
@@ -67,3 +74,36 @@ export const loadUser = (userInfo) => ({
   payload: userInfo,
 });
 
+export const setIsLoadedNearOffers = (setFlag) => ({
+  type: ActionType.IS_LOADED_NEAR_OFFERS,
+  payload: setFlag,
+});
+
+export const setIsLoadedCurrentOffer = (setFlag) => ({
+  type: ActionType.IS_LOADED_CURRENT_OFFER,
+  payload: setFlag,
+});
+
+export const setIsLoadedOffers = (setFlag) => ({
+  type: ActionType.IS_LOADED_OFFERS,
+  payload: setFlag,
+});
+
+export const setIsLoadedReviews = (setFlag) => ({
+  type: ActionType.IS_LOADED_REVIEWS,
+  payload: setFlag,
+});
+
+export const setIsLoadedFavoriteOffers = (setFlag) => ({
+  type: ActionType.IS_LOADED_FAVORITE_OFFERS,
+  payload: setFlag,
+});
+
+export const setFetchMessage = (errorMessage) => ({
+  type: ActionType.SET_FETCH_ERROR,
+  payload: errorMessage,
+});
+
+export const closeAlertMessage = () => ({
+  type: ActionType.CLOSE_ALERT
+});

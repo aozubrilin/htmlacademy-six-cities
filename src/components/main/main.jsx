@@ -11,6 +11,8 @@ import MainEmpty from "../main-empty/main-empty";
 import withOpen from "../../hocs/withOpen/withOpen";
 import {connect} from "react-redux";
 import {getCurrentOffers} from "../../store/selectors";
+import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
+
 
 const SortingWrapper = withOpen(Sorting);
 
@@ -33,8 +35,8 @@ const Main = ({currentOffers, city, isOffersEmpty}) => {
                   <SortingWrapper/>
                   <div className="cities__places-list places__list tabs__content">
                     <MainOffersList
-                      offers={currentOffers}
-                      cardClass={OfferCardClass.MAIN}/>
+                      cardClass={OfferCardClass.MAIN}
+                    />
                   </div>
 
                 </section>
@@ -55,7 +57,7 @@ const Main = ({currentOffers, city, isOffersEmpty}) => {
 Main.propTypes = {
   currentOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   city: PropTypes.string.isRequired,
-  isOffersEmpty: PropTypes.bool.isRequired
+  isOffersEmpty: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({data, app}) => {
@@ -65,8 +67,9 @@ const mapStateToProps = ({data, app}) => {
     currentOffers: getCurrentOffers({data, app}),
     city: app.city,
     isOffersEmpty,
+    isLoadedOffers: data.isLoadedOffers,
   });
 };
 
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(withAlertDialog(Main));

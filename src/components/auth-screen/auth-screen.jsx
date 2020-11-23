@@ -4,6 +4,7 @@ import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {login} from "../../store/api-actions";
 import Header from "../header/header";
+import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
 import {AuthorizationStatus} from "../../const";
 
 
@@ -30,7 +31,7 @@ class AuthScreen extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus} = this.props;
+    const {authorizationStatus, city} = this.props;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       return <Redirect to={`/`} />;
@@ -77,7 +78,7 @@ class AuthScreen extends PureComponent {
             <section className="locations locations--login locations--current">
               <div className="locations__item">
                 <a className="locations__item-link" href="#">
-                  <span>Amsterdam</span>
+                  <span>{city}</span>
                 </a>
               </div>
             </section>
@@ -91,10 +92,12 @@ class AuthScreen extends PureComponent {
 AuthScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({user}) => ({
+const mapStateToProps = ({user, app}) => ({
   authorizationStatus: user.authorizationStatus,
+  city: app.city,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -104,4 +107,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {AuthScreen};
-export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(withAlertDialog(AuthScreen));

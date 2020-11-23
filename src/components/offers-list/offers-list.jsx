@@ -4,6 +4,7 @@ import {offerPropTypes} from "../../utils/prop-type";
 import OfferCard from "../offer-card/offer-card";
 import {connect} from "react-redux";
 import {getCurrentOffers} from "../../store/selectors";
+import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 
 const OffersList = ({offers, cardClass}) => {
@@ -22,22 +23,21 @@ const OffersList = ({offers, cardClass}) => {
 OffersList.propTypes = {
   cardClass: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToMainProps = ({data, app}) => ({
   offers: getCurrentOffers({data, app}),
+  isLoading: data.isLoadedOffers,
 });
 
-const mapStateToNearestsProps = ({data}) => {
-  const nearOffers = data.nearOffers;
-
-  return {
-    offers: nearOffers,
-  };
-};
+const mapStateToNearestsProps = ({data}) => ({
+  offers: data.nearOffers,
+  isLoading: data.isLoadedNearOffers,
+});
 
 
-export const MainOffersList = connect(mapStateToMainProps)(OffersList);
-export const NearestsOffersList = connect(mapStateToNearestsProps)(OffersList);
+export const MainOffersList = connect(mapStateToMainProps)(withSpinner(OffersList));
+export const NearestsOffersList = connect(mapStateToNearestsProps)(withSpinner(OffersList));
 
 export default OffersList;
