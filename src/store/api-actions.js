@@ -15,7 +15,7 @@ import {
   updateFavoriteStatus,
 } from "./action";
 import {APIRoute, AuthorizationStatus} from "../const";
-import {getAdaptedOffers, adaptToClientOffer, getAdaptedReviews, adaptToClientUser} from "../utils/adapters";
+import {getAdaptedOffers, adaptToClientOffer, getAdaptedReviews, adaptToClientUser, adaptReviewtoServer} from "../utils/adapters";
 
 
 export const fetchOffersList = () => (dispatch, _getState, api) => {
@@ -107,10 +107,16 @@ export const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
   dispatch(setIsLoadedFavoriteOffers(false));
 };
 
-
 export const changeFavoriteStatus = (offerId, favoriteStatus) => (dispatch, _getState, api) => (
   api.post(`/favorite/${offerId}/${favoriteStatus}`)
     .then(({data}) => {
       dispatch(updateFavoriteStatus(adaptToClientOffer(data)));
     })
 );
+
+export const sendReview = (offerId, review) => (dispatch, _getState, api) => {
+  api.post(`/comments/${offerId}`, adaptReviewtoServer(review))
+    .then(({data}) => {
+      dispatch(loadReviews(getAdaptedReviews(data)));
+    });
+};

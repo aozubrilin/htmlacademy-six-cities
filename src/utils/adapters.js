@@ -55,3 +55,12 @@ export const adaptToClientUser = (data) => {
     isProUser: data.is_pro,
   };
 };
+
+export const adaptReviewtoServer = (review) => {
+
+  const {text, rating} = review;
+  return {
+    'comment': text,
+    'rating': rating,
+  };
+};

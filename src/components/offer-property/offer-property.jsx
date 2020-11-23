@@ -6,12 +6,11 @@ import {getRating} from "../../utils/utils";
 import ReviewsList from "../rewiews-list/rewiews-list";
 import ReviewForm from "../review-form/review-form";
 import {OfferMap} from "../map/map";
-import withReviewForm from "../../hocs/with-review-form/with-review-form";
+
 import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 
 const MAX_IMAGE_COUNT = 6;
-const ReviewFormWrapper = withReviewForm(ReviewForm);
 
 const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isLoadedReviews, onChangeFavoriteSatus}) => {
   const {
@@ -130,7 +129,9 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
               isLoading={isLoadedReviews}
             />
             {isAuthorizedStatus ?
-              <ReviewFormWrapper /> : false}
+              <ReviewForm
+                offerId={id}
+              /> : false}
           </section>
         </div>
       </div>
