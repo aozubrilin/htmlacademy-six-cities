@@ -17,6 +17,7 @@ export const ActionType = {
   IS_LOADED_FAVORITE_OFFERS: `IS_LOADED_FAVORITE_OFFERS`,
   SET_FETCH_ERROR: `SET_FETCH_ERROR`,
   CLOSE_ALERT: `CLOSE_ALERT`,
+  UPDATE_FAVORITE_STATUS: `UPDATE_FAVORITE_STATUS`,
 };
 
 export const changeCity = (city) => ({
@@ -106,4 +107,9 @@ export const setFetchMessage = (errorMessage) => ({
 
 export const closeAlertMessage = () => ({
   type: ActionType.CLOSE_ALERT
+});
+
+export const updateFavoriteStatus = (favoriteOffer) => ({
+  type: ActionType.UPDATE_FAVORITE_STATUS,
+  payload: favoriteOffer,
 });

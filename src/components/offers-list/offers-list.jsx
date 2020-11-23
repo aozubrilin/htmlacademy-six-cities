@@ -10,9 +10,10 @@ import withSpinner from "../../hocs/with-spinner/with-spinner";
 const OffersList = ({offers, cardClass}) => {
 
   return (
-    offers.map((offer) => (
+    offers.map((offer, i) => (
       <OfferCard
-        key={offer.id}
+        key={`${offer.id}-${i}`}
+
         offer={offer}
         cardClass={cardClass}
       />
@@ -23,7 +24,7 @@ const OffersList = ({offers, cardClass}) => {
 OffersList.propTypes = {
   cardClass: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
 };
 
 const mapStateToMainProps = ({data, app}) => ({

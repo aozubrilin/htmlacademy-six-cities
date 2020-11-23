@@ -13,8 +13,9 @@ import withSpinner from "../../hocs/with-spinner/with-spinner";
 const MAX_IMAGE_COUNT = 6;
 const ReviewFormWrapper = withReviewForm(ReviewForm);
 
-const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isLoadedReviews}) => {
+const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isLoadedReviews, onChangeFavoriteSatus}) => {
   const {
+    id,
     title,
     description,
     type,
@@ -26,7 +27,7 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
     features,
     host,
     isPremium,
-    isFavorite
+    isFavorite,
   } = offer;
 
   return (
@@ -54,20 +55,21 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
             <h1 className="property__name">
               {title}
             </h1>
-            {isFavorite ?
-              <button className="property__bookmark-button place-bookmark-button--active button" type="button">
-                <svg className="place-card__bookmark-button--active" width="31" height="33">
-                  <use xlinkHref="#icon-bookmark"></use>
-                </svg>
-                <span className="visually-hidden">In bookmarks</span>
-              </button>
-              :
-              <button className="property__bookmark-button button" type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
-                  <use xlinkHref="#icon-bookmark"></use>
-                </svg>
-                <span className="visually-hidden">To bookmarks</span>
-              </button>}
+
+
+            <button className={`property__bookmark-button button  ${isFavorite && `place-bookmark-button--active`}`}
+              type="button"
+              onClick={() => {
+                onChangeFavoriteSatus(id, isFavorite ? 0 : 1);
+              }}
+            >
+              <svg className={`${isFavorite ? `property__bookmark-icon--active` : `property__bookmark-icon`}`} width="31" height="33">
+                <use xlinkHref="#icon-bookmark"></use>
+              </svg>
+              <span className="visually-hidden">{`${isFavorite ? `In` : `To`} bookmarks`}</span>
+            </button>
+
+
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
@@ -146,8 +148,10 @@ OfferProperty.propTypes = {
   nearOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   isAuthorizedStatus: PropTypes.bool.isRequired,
   isLoadedReviews: PropTypes.bool,
+  onChangeFavoriteSatus: PropTypes.func,
 };
 
-export default withSpinner(OfferProperty);
+
+export default (withSpinner(OfferProperty));
 
 

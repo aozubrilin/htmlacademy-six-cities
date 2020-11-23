@@ -5,7 +5,7 @@ import {reviewPropTypes} from "../../utils/prop-type";
 import {NearestsOffersList} from "../offers-list/offers-list";
 import Header from "../header/header";
 import {OfferCardClass, AuthorizationStatus} from "../../const";
-import {fetchIdOffer, fetchReviews, fetchNearOffers} from "../../store/api-actions";
+import {fetchIdOffer, fetchReviews, fetchNearOffers, changeFavoriteStatus, fetchFavoriteOffers} from "../../store/api-actions";
 import {connect} from "react-redux";
 import {getSortedReviews} from "../../store/selectors";
 import OfferProperty from "../offer-property/offer-property";
@@ -32,6 +32,7 @@ class OfferScreen extends PureComponent {
       nearOffers,
       isLoadedCurrentOffer,
       isLoadedReviews,
+      onChangeFavoriteSatus,
     } = this.props;
 
     return (
@@ -45,6 +46,7 @@ class OfferScreen extends PureComponent {
             isAuthorizedStatus={isAuthorizedStatus}
             nearOffers={nearOffers}
             isLoadedReviews={isLoadedReviews}
+            onChangeFavoriteSatus={onChangeFavoriteSatus}
           />}
 
           {nearOffers.length !== 0 &&
@@ -71,7 +73,7 @@ OfferScreen.propTypes = {
   nearOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   isLoadedReviews: PropTypes.bool,
   isLoadedCurrentOffer: PropTypes.bool.isRequired,
-
+  onChangeFavoriteSatus: PropTypes.func,
 };
 
 const mapStateToProps = ({data, user}, ownProps) => {
@@ -100,8 +102,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchNearOffers(offerId));
     dispatch(fetchReviews(offerId));
   },
+  onChangeFavoriteSatus(id, isFavorite) {
+    dispatch(changeFavoriteStatus(id, isFavorite));
+    dispatch(fetchFavoriteOffers());
+  },
 });
-
 
 export {OfferScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(withAlertDialog(OfferScreen));

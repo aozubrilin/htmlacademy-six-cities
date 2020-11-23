@@ -1,4 +1,4 @@
-import {extend} from "../../../utils/utils";
+import {extend, replaceItem} from "../../../utils/utils";
 import {ActionType} from "../../action";
 
 
@@ -65,6 +65,13 @@ const data = (state = initialState, action) => {
     case ActionType.CLOSE_ALERT:
       return extend(state, {
         errorFetchMessadge: null,
+      });
+    case ActionType.UPDATE_FAVORITE_STATUS:
+      return extend(state, {
+        offers: replaceItem(state.offers, action.payload),
+        nearOffers: replaceItem(state.nearOffers, action.payload),
+        favoriteOffers: replaceItem(state.favoriteOffers, action.payload),
+        currentOffer: action.payload,
       });
   }
   return state;

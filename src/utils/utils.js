@@ -52,3 +52,14 @@ export const getSortedReviewsByDate = (reviews) => {
 
   return reviews.slice().sort((a, b) => b.date - a.date);
 };
+
+export const replaceItem = (Offers, offer) => {
+  const index = Offers.findIndex((item) => item.id === offer.id);
+  if (index === -1) {
+    return Offers;
+  }
+
+  return [...Offers.slice(0, index),
+    offer,
+    ...Offers.slice(index + 1)];
+};

@@ -5,9 +5,10 @@ import {offerPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
 import {OfferCardClass} from "../../const";
 import {setActiveOfferId} from "../../store/action";
+import {changeFavoriteStatus, fetchFavoriteOffers} from "../../store/api-actions";
 import {connect} from "react-redux";
 
-const OfferCard = ({offer, cardClass, onChangeOfferId}) => {
+const OfferCard = ({offer, cardClass, onChangeOfferId, onChangeFavoriteSatus}) => {
   const {id, title, type, previewImage, rating, price, isPremium, isFavorite} = offer;
 
   const isFavoriteScreen = cardClass === OfferCardClass.FAVORITE;
@@ -43,7 +44,12 @@ const OfferCard = ({offer, cardClass, onChangeOfferId}) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isFavorite && `place-card__bookmark-button--active`}`} type="button">
+          <button className={`place-card__bookmark-button button ${isFavorite && `place-card__bookmark-button--active`}`}
+            type="button"
+            onClick={() => {
+              onChangeFavoriteSatus(id, isFavorite ? 0 : 1);
+            }}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -69,11 +75,16 @@ OfferCard.propTypes = {
   cardClass: PropTypes.string.isRequired,
   offer: offerPropTypes,
   onChangeOfferId: PropTypes.func.isRequired,
+  onChangeFavoriteSatus: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeOfferId(offerId) {
     dispatch(setActiveOfferId(offerId));
+  },
+  onChangeFavoriteSatus(id, isFavorite) {
+    dispatch(changeFavoriteStatus(id, isFavorite));
+    dispatch(fetchFavoriteOffers());
   },
 });
 

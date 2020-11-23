@@ -33,7 +33,7 @@ class AuthScreen extends PureComponent {
   render() {
     const {authorizationStatus, city} = this.props;
 
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return <Redirect to={`/`} />;
     }
 
