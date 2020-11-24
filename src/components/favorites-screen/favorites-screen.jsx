@@ -6,6 +6,7 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import {connect} from "react-redux";
 import {getFavoriteOffers, getIsLoadedfavoriteOffers} from "../../store/selectors";
+import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
 
 const FavoritesScreen = ({favoriteOffers, isLoadedfavoriteOffers}) => {
   return (
@@ -49,4 +50,4 @@ const mapStateToProps = (state) => ({
 
 
 export {FavoritesScreen};
-export default connect(mapStateToProps)(FavoritesScreen);
+export default connect(mapStateToProps)(withAlertDialog(FavoritesScreen));

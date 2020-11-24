@@ -8,7 +8,6 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_NEAR_OFFERS: `LOAD_NEAR_OFFERS`,
   LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
-  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_USER: `LOAD_USER`,
   IS_LOADED_NEAR_OFFERS: `IS_LOADED_NEAR_OFFERS`,
   IS_LOADED_CURRENT_OFFER: `IS_LOADED_CURRENT_OFFER`,
@@ -63,11 +62,6 @@ export const loadNearOffers = (offers) => ({
 export const loadFavoriteOffers = (offers) => ({
   type: ActionType.LOAD_FAVORITE_OFFERS,
   payload: offers,
-});
-
-export const redirectToRoute = (url) => ({
-  type: ActionType.REDIRECT_TO_ROUTE,
-  payload: url,
 });
 
 export const loadUser = (userInfo) => ({

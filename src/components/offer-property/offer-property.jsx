@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {useHistory} from "react-router-dom";
+import {AppRoute} from "../../const";
 import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
@@ -28,6 +30,13 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
     isFavorite,
   } = offer;
 
+  const history = useHistory();
+
+  const handleFavoriteClick = () =>{
+    const goLogin = () => history.push(AppRoute.LOGIN);
+    return !isAuthorizedStatus ? goLogin() : onChangeFavoriteSatus(id, isFavorite ? 0 : 1);
+  };
+
   return (
     <section className="property">
       <div className="property__gallery-container container">
@@ -54,11 +63,10 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
               {title}
             </h1>
 
-
             <button className={`property__bookmark-button button  ${isFavorite && `place-bookmark-button--active`}`}
               type="button"
               onClick={() => {
-                onChangeFavoriteSatus(id, isFavorite ? 0 : 1);
+                handleFavoriteClick();
               }}
             >
               <svg className={`${isFavorite ? `property__bookmark-icon--active` : `property__bookmark-icon`}`} width="31" height="33">
@@ -66,7 +74,6 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
               </svg>
               <span className="visually-hidden">{`${isFavorite ? `In` : `To`} bookmarks`}</span>
             </button>
-
 
           </div>
           <div className="property__rating rating">

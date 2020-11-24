@@ -3,17 +3,24 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {offerPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
-import {OfferCardClass, AppRoute} from "../../const";
+import {OfferCardClass, AppRoute, AuthorizationStatus} from "../../const";
 import {setActiveOfferId} from "../../store/action";
 import {changeFavoriteStatus, fetchFavoriteOffers} from "../../store/api-actions";
+import {getAuthorizationStatus} from "../../store/selectors";
+import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 
 
-const OfferCard = ({offer, cardClass, onChangeOfferId, onChangeFavoriteSatus}) => {
+const OfferCard = ({offer, cardClass, onChangeOfferId, onChangeFavoriteSatus, isAuthorizedStatus}) => {
   const {id, title, type, previewImage, rating, price, isPremium, isFavorite} = offer;
-
+  const history = useHistory();
   const isFavoriteScreen = cardClass === OfferCardClass.FAVORITE;
   const ratingPercent = getRating(rating);
+
+  const handleFavoriteClick = () =>{
+    const goLogin = () => history.push(AppRoute.LOGIN);
+    return !isAuthorizedStatus ? goLogin() : onChangeFavoriteSatus(id, isFavorite ? 0 : 1);
+  };
 
   return (
     <article
@@ -48,7 +55,7 @@ const OfferCard = ({offer, cardClass, onChangeOfferId, onChangeFavoriteSatus}) =
           <button className={`place-card__bookmark-button button ${isFavorite && `place-card__bookmark-button--active`}`}
             type="button"
             onClick={() => {
-              onChangeFavoriteSatus(id, isFavorite ? 0 : 1);
+              handleFavoriteClick();
             }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -77,7 +84,12 @@ OfferCard.propTypes = {
   offer: offerPropTypes,
   onChangeOfferId: PropTypes.func.isRequired,
   onChangeFavoriteSatus: PropTypes.func.isRequired,
+  isAuthorizedStatus: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isAuthorizedStatus: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeOfferId(offerId) {
@@ -90,4 +102,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {OfferCard};
-export default connect(null, mapDispatchToProps)(OfferCard);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferCard);
