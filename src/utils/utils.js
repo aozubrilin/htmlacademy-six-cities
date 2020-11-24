@@ -63,3 +63,5 @@ export const replaceItem = (Offers, offer) => {
     offer,
     ...Offers.slice(index + 1)];
 };
+
+export const upperCaseFirst = (str) => str ? str[0].toUpperCase() + str.slice(1) : str;

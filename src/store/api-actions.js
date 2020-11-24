@@ -21,7 +21,7 @@ import {getAdaptedOffers, adaptToClientOffer, getAdaptedReviews, adaptToClientUs
 export const fetchOffersList = () => (dispatch, _getState, api) => {
   dispatch(setIsLoadedOffers(true));
   api.get(APIRoute.OFFERS)
-    .then(({data}) =>{
+    .then(({data}) => {
       dispatch(loadOffers(getAdaptedOffers(data)));
     })
     .catch((err) => {
@@ -47,7 +47,7 @@ export const fetchIdOffer = (offerId) => (dispatch, _getState, api) => {
 export const fetchReviews = (offerId) => (dispatch, _getState, api) => {
   dispatch(setIsLoadedReviews(true));
   api.get(`${APIRoute.COMMENTS}/${offerId}`)
-    .then(({data}) =>{
+    .then(({data}) => {
       dispatch(loadReviews(getAdaptedReviews(data)));
     })
     .catch((err) => {
@@ -83,40 +83,44 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 export const fetchNearOffers = (offerId) => (dispatch, _getState, api) => {
   dispatch(setIsLoadedNearOffers(true));
   api.get(`${APIRoute.OFFERS}/${offerId}/nearby`)
-    .then(({data}) =>{
+    .then(({data}) => {
       dispatch(loadNearOffers(getAdaptedOffers(data)));
     })
     .catch((err) => {
       dispatch(setFetchMessage(`Ошибка загрузки предложений поблизости.`));
-      return err;
+      throw err;
     });
   dispatch(setIsLoadedNearOffers(false));
 };
 
-
 export const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
   dispatch(setIsLoadedFavoriteOffers(true));
   api.get(APIRoute.FAVORITE)
-    .then(({data}) =>{
+    .then(({data}) => {
       dispatch(loadFavoriteOffers(getAdaptedOffers(data)));
     })
     .catch((err) => {
-      dispatch(setFetchMessage(`Ошибка загрузки избранных предложений`));
-      return err;
+      throw err;
     });
   dispatch(setIsLoadedFavoriteOffers(false));
 };
 
 export const changeFavoriteStatus = (offerId, favoriteStatus) => (dispatch, _getState, api) => (
-  api.post(`/favorite/${offerId}/${favoriteStatus}`)
+  api.post(`${APIRoute.FAVORITE}/${offerId}/${favoriteStatus}`)
     .then(({data}) => {
       dispatch(updateFavoriteStatus(adaptToClientOffer(data)));
+    })
+    .catch((err) => {
+      throw err;
     })
 );
 
 export const sendReview = (offerId, review) => (dispatch, _getState, api) => {
-  api.post(`/comments/${offerId}`, adaptReviewtoServer(review))
+  api.post(`${APIRoute.COMMENTS}/${offerId}`, adaptReviewtoServer(review))
     .then(({data}) => {
       dispatch(loadReviews(getAdaptedReviews(data)));
+    })
+    .catch((err) => {
+      throw err;
     });
 };

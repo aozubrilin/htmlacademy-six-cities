@@ -12,6 +12,7 @@ import withOpen from "../../hocs/withOpen/withOpen";
 import {connect} from "react-redux";
 import {getCurrentOffers} from "../../store/selectors";
 import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
+import {getCity, getIsLoadedOffers} from "../../store/selectors";
 
 
 const SortingWrapper = withOpen(Sorting);
@@ -60,16 +61,12 @@ Main.propTypes = {
   isOffersEmpty: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({data, app}) => {
-  const isOffersEmpty = data.offers.length === 0;
-
-  return ({
-    currentOffers: getCurrentOffers({data, app}),
-    city: app.city,
-    isOffersEmpty,
-    isLoadedOffers: data.isLoadedOffers,
-  });
-};
+const mapStateToProps = (state) => ({
+  currentOffers: getCurrentOffers(state),
+  city: getCity(state),
+  isOffersEmpty: getCurrentOffers(state).length === 0,
+  isLoadedOffers: getIsLoadedOffers(state),
+});
 
 export {Main};
 export default connect(mapStateToProps)(withAlertDialog(Main));

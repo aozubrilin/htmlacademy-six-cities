@@ -7,7 +7,7 @@ import Header from "../header/header";
 import {OfferCardClass, AuthorizationStatus} from "../../const";
 import {fetchIdOffer, fetchReviews, fetchNearOffers, changeFavoriteStatus, fetchFavoriteOffers} from "../../store/api-actions";
 import {connect} from "react-redux";
-import {getSortedReviews} from "../../store/selectors";
+import {getSortedReviews, getCurrentOffer, getNearOffers, getAuthorizationStatus, getIsLoadedRviews, getIsLoadedCurrentOffer} from "../../store/selectors";
 import OfferProperty from "../offer-property/offer-property";
 import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
 
@@ -76,25 +76,15 @@ OfferScreen.propTypes = {
   onChangeFavoriteSatus: PropTypes.func,
 };
 
-const mapStateToProps = ({data, user}, ownProps) => {
-  const offerId = Number(ownProps.match.params.id);
-  const offer = data.currentOffer;
-  const offerReviews = getSortedReviews({data});
-  const isAuthorizedStatus = user.authorizationStatus === AuthorizationStatus.AUTH;
-  const nearOffers = data.nearOffers;
-  const isLoadedReviews = data.isLoadedReviews;
-  const isLoadedCurrentOffer = data.isLoadedCurrentOffer;
-
-  return {
-    offerReviews,
-    offer,
-    offerId,
-    isAuthorizedStatus,
-    nearOffers,
-    isLoadedReviews,
-    isLoadedCurrentOffer,
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  offerReviews: getSortedReviews(state),
+  offer: getCurrentOffer(state),
+  offerId: Number(ownProps.match.params.id),
+  nearOffers: getNearOffers(state),
+  isAuthorizedStatus: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+  isLoadedReviews: getIsLoadedRviews(state),
+  isLoadedCurrentOffer: getIsLoadedCurrentOffer(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   loadDataAction(offerId) {

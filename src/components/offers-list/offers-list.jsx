@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import OfferCard from "../offer-card/offer-card";
 import {connect} from "react-redux";
-import {getCurrentOffers} from "../../store/selectors";
+import {getCurrentOffers, getIsLoadedOffers, getNearOffers, getIsLoadedNearOffers} from "../../store/selectors";
 import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 
@@ -12,8 +12,7 @@ const OffersList = ({offers, cardClass}) => {
   return (
     offers.map((offer, i) => (
       <OfferCard
-        key={`${offer.id}-${i}`}
-
+        key={`${offer.city.name}-${offer.id}-${i}`}
         offer={offer}
         cardClass={cardClass}
       />
@@ -27,14 +26,14 @@ OffersList.propTypes = {
   isLoading: PropTypes.bool,
 };
 
-const mapStateToMainProps = ({data, app}) => ({
-  offers: getCurrentOffers({data, app}),
-  isLoading: data.isLoadedOffers,
+const mapStateToMainProps = (state) => ({
+  offers: getCurrentOffers(state),
+  isLoading: getIsLoadedOffers(state),
 });
 
-const mapStateToNearestsProps = ({data}) => ({
-  offers: data.nearOffers,
-  isLoading: data.isLoadedNearOffers,
+const mapStateToNearestsProps = (state) => ({
+  offers: getNearOffers(state),
+  isLoading: getIsLoadedNearOffers(state),
 });
 
 

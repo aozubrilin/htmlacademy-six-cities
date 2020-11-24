@@ -6,7 +6,6 @@ import {getRating} from "../../utils/utils";
 import ReviewsList from "../rewiews-list/rewiews-list";
 import ReviewForm from "../review-form/review-form";
 import {OfferMap} from "../map/map";
-
 import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 

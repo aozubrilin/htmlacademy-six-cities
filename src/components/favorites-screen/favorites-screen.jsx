@@ -5,7 +5,7 @@ import FavoritesCityList from "../favorites-city-list/favorites-city-list";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import {connect} from "react-redux";
-
+import {getFavoriteOffers, getIsLoadedfavoriteOffers} from "../../store/selectors";
 
 const FavoritesScreen = ({favoriteOffers, isLoadedfavoriteOffers}) => {
   return (
@@ -42,9 +42,9 @@ FavoritesScreen.propTypes = {
   isLoadedfavoriteOffers: PropTypes.bool,
 };
 
-const mapStateToProps = ({data}) => ({
-  favoriteOffers: data.favoriteOffers,
-  isLoadedfavoriteOffers: data.isLoadedfavoriteOffers,
+const mapStateToProps = (state) => ({
+  favoriteOffers: getFavoriteOffers(state),
+  isLoadedfavoriteOffers: getIsLoadedfavoriteOffers(state),
 });
 
 

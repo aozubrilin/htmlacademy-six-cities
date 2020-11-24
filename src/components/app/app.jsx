@@ -6,6 +6,7 @@ import FavoritesScreen from "../favorites-screen/favorites-screen";
 import OfferScreen from "../offer-screen/offer-screen";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
+import {AppRoute} from "../../const";
 
 
 const App = () => {
@@ -13,15 +14,15 @@ const App = () => {
   return (
     <Router history={browserHistory}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.MAIN}>
           <Main/>
         </Route>
-        <Route exact path="/login">
+        <Route exact path={AppRoute.LOGIN}>
           <AuthScreen/>
         </Route>
         <PrivateRoute
           exact
-          path="/favorites"
+          path={AppRoute.FAVORITES}
           render={() => {
             return (
               <FavoritesScreen/>

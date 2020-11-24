@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {offerPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
-import {OfferCardClass} from "../../const";
+import {OfferCardClass, AppRoute} from "../../const";
 import {setActiveOfferId} from "../../store/action";
 import {changeFavoriteStatus, fetchFavoriteOffers} from "../../store/api-actions";
 import {connect} from "react-redux";
+
 
 const OfferCard = ({offer, cardClass, onChangeOfferId, onChangeFavoriteSatus}) => {
   const {id, title, type, previewImage, rating, price, isPremium, isFavorite} = offer;
@@ -30,7 +31,7 @@ const OfferCard = ({offer, cardClass, onChangeOfferId, onChangeFavoriteSatus}) =
         </div> : ``}
 
       <div className={`${cardClass}__image-wrapper place-card__image-wrapper`}>
-        <Link to={`/offer/${id}`}>
+        <Link to={`${AppRoute.OFFER}/${id}`}>
           <img className="place-card__image"
             src={previewImage}
             width={isFavoriteScreen ? `150` : `260`}
@@ -63,7 +64,7 @@ const OfferCard = ({offer, cardClass, onChangeOfferId, onChangeFavoriteSatus}) =
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`}>{title}</Link>
+          <Link to={`${AppRoute.OFFER}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

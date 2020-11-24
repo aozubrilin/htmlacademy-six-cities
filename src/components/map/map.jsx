@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import leaflet from "leaflet";
 import {connect} from "react-redux";
-import {getCurrentOffers} from "../../store/selectors";
+import {getCurrentOffers, getNearOffers, getCurrentOffer, getActiveOfferId, getIsLoadedOffers, getIsLoadedNearOffers} from "../../store/selectors";
 import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 
@@ -72,16 +72,16 @@ Map.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToMainProps = ({data, app}) => ({
-  offers: getCurrentOffers({data, app}),
-  activeOfferId: app.activeOfferId,
-  isLoading: data.isLoadedOffers,
+const mapStateToMainProps = (state) => ({
+  offers: getCurrentOffers(state),
+  activeOfferId: getActiveOfferId(state),
+  isLoading: getIsLoadedOffers(state),
 });
 
-const mapStateToNearestsProps = ({data, app}) => ({
-  offers: data.nearOffers.slice(0, 3),
-  activeOfferId: app.activeOfferId,
-  isLoading: data.isLoadedNearOffers,
+const mapStateToNearestsProps = (state) => ({
+  offers: [...getNearOffers(state), getCurrentOffer(state)],
+  activeOfferId: getActiveOfferId(state),
+  isLoading: getIsLoadedNearOffers(state),
 });
 
 

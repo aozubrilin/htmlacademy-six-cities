@@ -1,3 +1,5 @@
+import {upperCaseFirst} from "../utils/utils";
+
 export const adaptToClientOffer = (data) => {
   return {
     bedroomsCount: data.bedrooms,
@@ -24,7 +26,7 @@ export const adaptToClientOffer = (data) => {
     price: data.price,
     rating: data.rating,
     title: data.title,
-    type: data.type
+    type: upperCaseFirst(data.type)
   };
 };
 

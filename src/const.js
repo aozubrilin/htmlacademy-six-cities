@@ -41,3 +41,14 @@ export const APIRoute = {
   COMMENTS: `/comments`,
   LOGIN: `/login`,
 };
+
+export const HttpCode = {
+  UNAUTHORIZED: 401
+};
+
+export const AppRoute = {
+  MAIN: `/`,
+  OFFER: `/offer`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+};
