@@ -11,6 +11,9 @@ import MainEmpty from "../main-empty/main-empty";
 import withOpen from "../../hocs/withOpen/withOpen";
 import {connect} from "react-redux";
 import {getCurrentOffers} from "../../store/selectors";
+import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
+import {getCity, getIsLoadedOffers} from "../../store/selectors";
+
 
 const SortingWrapper = withOpen(Sorting);
 
@@ -33,8 +36,8 @@ const Main = ({currentOffers, city, isOffersEmpty}) => {
                   <SortingWrapper/>
                   <div className="cities__places-list places__list tabs__content">
                     <MainOffersList
-                      offers={currentOffers}
-                      cardClass={OfferCardClass.MAIN}/>
+                      cardClass={OfferCardClass.MAIN}
+                    />
                   </div>
 
                 </section>
@@ -55,18 +58,15 @@ const Main = ({currentOffers, city, isOffersEmpty}) => {
 Main.propTypes = {
   currentOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   city: PropTypes.string.isRequired,
-  isOffersEmpty: PropTypes.bool.isRequired
+  isOffersEmpty: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({data, app}) => {
-  const isOffersEmpty = data.offers.length === 0;
-
-  return ({
-    currentOffers: getCurrentOffers({data, app}),
-    city: app.city,
-    isOffersEmpty,
-  });
-};
+const mapStateToProps = (state) => ({
+  currentOffers: getCurrentOffers(state),
+  city: getCity(state),
+  isOffersEmpty: getCurrentOffers(state).length === 0,
+  isLoadedOffers: getIsLoadedOffers(state),
+});
 
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(withAlertDialog(Main));

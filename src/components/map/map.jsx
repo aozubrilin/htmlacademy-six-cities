@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import leaflet from "leaflet";
 import {connect} from "react-redux";
-import {getCurrentOffers} from "../../store/selectors";
+import {getCurrentOffers, getNearOffers, getCurrentOffer, getActiveOfferId, getIsLoadedOffers, getIsLoadedNearOffers} from "../../store/selectors";
+import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 
 class Map extends PureComponent {
@@ -68,23 +69,23 @@ class Map extends PureComponent {
 Map.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
   activeOfferId: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToMainProps = ({data, app}) => ({
-  offers: getCurrentOffers({data, app}),
-  activeOfferId: app.activeOfferId,
+const mapStateToMainProps = (state) => ({
+  offers: getCurrentOffers(state),
+  activeOfferId: getActiveOfferId(state),
+  isLoading: getIsLoadedOffers(state),
 });
 
-const mapStateToNearestsProps = ({offers, activeOfferId}) => {
-  const nearOffers = offers.slice(0, 3);
+const mapStateToNearestsProps = (state) => ({
+  offers: [...getNearOffers(state), getCurrentOffer(state)],
+  activeOfferId: getActiveOfferId(state),
+  isLoading: getIsLoadedNearOffers(state),
+});
 
-  return {
-    offers: nearOffers,
-    activeOfferId,
-  };
-};
 
-export const MainMap = connect(mapStateToMainProps)(Map);
-export const OfferMap = connect(mapStateToNearestsProps)(Map);
+export const MainMap = connect(mapStateToMainProps)(withSpinner(Map));
+export const OfferMap = connect(mapStateToNearestsProps)(withSpinner(Map));
 
 export default Map;

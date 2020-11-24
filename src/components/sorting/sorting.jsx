@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {SortType} from "../../const";
 import {setSortedType} from "../../store/action";
 import {connect} from "react-redux";
+import {getCurrentSortType} from "../../store/selectors";
 
 
 const Sorting = ({isOpen, onOpenChange, onChangeSortedType, currentSortType}) => {
@@ -44,8 +45,8 @@ Sorting.propTypes = {
   onChangeSortedType: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({app}) => ({
-  currentSortType: app.currentSortType,
+const mapStateToProps = (state) => ({
+  currentSortType: getCurrentSortType(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

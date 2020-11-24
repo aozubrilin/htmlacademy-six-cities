@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import {getUniqueCities} from "../../utils/utils";
 import FavoritesCityItem from "../favorites-city-item/favorites-city-item";
+import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 const FavoritesCityList = ({offers}) => {
   const uniqueCities = getUniqueCities(offers);
@@ -15,7 +16,7 @@ const FavoritesCityList = ({offers}) => {
           <FavoritesCityItem
             city={city}
             offers={offersByСity}
-            key={`${city[i]}-${i}`}
+            key={`${city}-${i}`}
           />
         );
       })}
@@ -27,5 +28,5 @@ FavoritesCityList.propTypes = {
   offers: PropTypes.arrayOf(offerPropTypes).isRequired,
 };
 
-export default FavoritesCityList;
+export default withSpinner(FavoritesCityList);
 

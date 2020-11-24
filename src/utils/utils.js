@@ -44,3 +44,24 @@ export const getFilteredOffers = (offers, city, sortType) => {
 
   return sortedOffers;
 };
+
+export const getSortedReviewsByDate = (reviews) => {
+  if (reviews.length < 1) {
+    return reviews;
+  }
+
+  return reviews.slice().sort((a, b) => b.date - a.date);
+};
+
+export const replaceItem = (Offers, offer) => {
+  const index = Offers.findIndex((item) => item.id === offer.id);
+  if (index === -1) {
+    return Offers;
+  }
+
+  return [...Offers.slice(0, index),
+    offer,
+    ...Offers.slice(index + 1)];
+};
+
+export const upperCaseFirst = (str) => str ? str[0].toUpperCase() + str.slice(1) : str;

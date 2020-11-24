@@ -3,7 +3,7 @@ import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating, getDate} from "../../utils/utils";
 
 const ReviewsItem = ({review}) => {
-  const {name, avatar, rating, date, text} = review;
+  const {rating, date, text, user} = review;
   const ratingPercent = getRating(rating);
 
   return (
@@ -13,13 +13,13 @@ const ReviewsItem = ({review}) => {
           <img
             className="reviews__avatar
           user__avatar"
-            src={avatar}
+            src={user.avatar}
             width="54"
             height="54"
             alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
-          {name}
+          {user.name}
         </span>
       </div>
       <div className="reviews__info">
