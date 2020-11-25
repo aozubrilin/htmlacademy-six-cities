@@ -5,7 +5,6 @@ import OffersList from "../offers-list/offers-list";
 import {OfferCardClass} from "../../const";
 
 const FavoritesCityItem = ({city, offers}) => {
-
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">

@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {useHistory} from "react-router-dom";
-import {AppRoute} from "../../const";
 import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
 import ReviewsList from "../rewiews-list/rewiews-list";
 import ReviewForm from "../review-form/review-form";
 import {OfferMap} from "../map/map";
+import FavoriteButton from "../favorite-button/favorite-button";
+import {favoriteButtonProperty} from "../../const";
 import withSpinner from "../../hocs/with-spinner/with-spinner";
 
 
 const MAX_IMAGE_COUNT = 6;
 
-const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isLoadedReviews, onChangeFavoriteSatus}) => {
+const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isLoadedReviews}) => {
   const {
     id,
     title,
@@ -29,13 +29,6 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
     isPremium,
     isFavorite,
   } = offer;
-
-  const history = useHistory();
-
-  const handleFavoriteClick = () =>{
-    const goLogin = () => history.push(AppRoute.LOGIN);
-    return !isAuthorizedStatus ? goLogin() : onChangeFavoriteSatus(id, isFavorite ? 0 : 1);
-  };
 
   return (
     <section className="property">
@@ -63,17 +56,11 @@ const OfferProperty = ({offer, offerReviews, isAuthorizedStatus, nearOffers, isL
               {title}
             </h1>
 
-            <button className={`property__bookmark-button button  ${isFavorite && `place-bookmark-button--active`}`}
-              type="button"
-              onClick={() => {
-                handleFavoriteClick();
-              }}
-            >
-              <svg className={`${isFavorite ? `property__bookmark-icon--active` : `property__bookmark-icon`}`} width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">{`${isFavorite ? `In` : `To`} bookmarks`}</span>
-            </button>
+            <FavoriteButton
+              isFavorite={isFavorite}
+              offerId={id}
+              buttonProperty={favoriteButtonProperty.propertyCard}
+            />
 
           </div>
           <div className="property__rating rating">
@@ -155,7 +142,6 @@ OfferProperty.propTypes = {
   nearOffers: PropTypes.arrayOf(offerPropTypes).isRequired,
   isAuthorizedStatus: PropTypes.bool.isRequired,
   isLoadedReviews: PropTypes.bool,
-  onChangeFavoriteSatus: PropTypes.func,
 };
 
 

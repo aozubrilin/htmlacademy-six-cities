@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {login} from "../../store/api-actions";
 import Header from "../header/header";
 import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
-import {AuthorizationStatus, AppRoute} from "../../const";
+import {AppRoute} from "../../const";
 import {getAuthorizationStatus, getCity} from "../../store/selectors";
 
 
@@ -32,9 +32,9 @@ class AuthScreen extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, city} = this.props;
+    const {isAuthorizedStatus, city} = this.props;
 
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
+    if (isAuthorizedStatus) {
       return <Redirect to={AppRoute.MAIN} />;
     }
 
@@ -92,12 +92,12 @@ class AuthScreen extends PureComponent {
 
 AuthScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
+  isAuthorizedStatus: PropTypes.bool.isRequired,
   city: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
+  isAuthorizedStatus: getAuthorizationStatus(state),
   city: getCity(state),
 });
 
