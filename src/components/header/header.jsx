@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {AuthorizationStatus, AppRoute} from "../../const";
-import {getAuthorizationStatus, getUserInfo} from "../../store/selectors";
+import {AppRoute} from "../../const";
+import {getUserInfo, getAuthorizationStatus} from "../../store/selectors";
 
 
 const Header = (props) => {
-  const {authorizationStatus, user} = props;
+  const {isAuthorizedStatus, user} = props;
 
   return (
     <header className="header">
@@ -24,7 +24,7 @@ const Header = (props) => {
                 <Link to={AppRoute.FAVORITES} className="header__nav-link header__nav-link--profile" >
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  {authorizationStatus === AuthorizationStatus.AUTH
+                  {isAuthorizedStatus
                     ? <span className="header__user-name user__name">{user.email}</span>
                     : <span className="header__login">Sign in</span>
                   }
@@ -39,12 +39,12 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
+  isAuthorizedStatus: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
+  isAuthorizedStatus: getAuthorizationStatus(state),
   user: getUserInfo(state),
 });
 

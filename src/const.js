@@ -52,3 +52,17 @@ export const AppRoute = {
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
 };
+
+export const favoriteButtonProperty = {
+  propertyCard: {
+    styleClass: `property`,
+    width: `31`,
+    height: `33`,
+  },
+  offerCard: {
+    styleClass: `place-card`,
+    width: `18`,
+    height: `19`,
+  }
+
+};

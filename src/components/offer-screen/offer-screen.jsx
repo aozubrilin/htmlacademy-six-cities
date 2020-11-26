@@ -4,7 +4,7 @@ import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
 import {NearestsOffersList} from "../offers-list/offers-list";
 import Header from "../header/header";
-import {OfferCardClass, AuthorizationStatus} from "../../const";
+import {OfferCardClass} from "../../const";
 import {fetchIdOffer, fetchReviews, fetchNearOffers, changeFavoriteStatus, fetchFavoriteOffers} from "../../store/api-actions";
 import {connect} from "react-redux";
 import {getSortedReviews, getCurrentOffer, getNearOffers, getAuthorizationStatus, getIsLoadedRviews, getIsLoadedCurrentOffer} from "../../store/selectors";
@@ -81,7 +81,7 @@ const mapStateToProps = (state, ownProps) => ({
   offer: getCurrentOffer(state),
   offerId: Number(ownProps.match.params.id),
   nearOffers: getNearOffers(state),
-  isAuthorizedStatus: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+  isAuthorizedStatus: getAuthorizationStatus(state),
   isLoadedReviews: getIsLoadedRviews(state),
   isLoadedCurrentOffer: getIsLoadedCurrentOffer(state),
 });

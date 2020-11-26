@@ -1,5 +1,6 @@
 import {createSelector} from "reselect";
 import {getFilteredOffers, getSortedReviewsByDate} from "../utils/utils";
+import {AuthorizationStatus} from "../const";
 
 
 const MAX_COUNT_NEAR_OFFERS = 3;
@@ -22,7 +23,7 @@ export const getCity = (({app}) => app.city);
 export const getCities = (({app}) => app.cities);
 export const getSortingType = (({app}) => app.currentSortType);
 
-export const getAuthorizationStatus = (({user}) => user.authorizationStatus);
+export const getAuthorizationStatus = (({user}) => user.authorizationStatus === AuthorizationStatus.AUTH);
 export const getUserInfo = (({user}) => user.userInfo);
 
 export const getCurrentOffers = createSelector(

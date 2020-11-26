@@ -111,6 +111,7 @@ export const changeFavoriteStatus = (offerId, favoriteStatus) => (dispatch, _get
       dispatch(updateFavoriteStatus(adaptToClientOffer(data)));
     })
     .catch((err) => {
+      dispatch(setFetchMessage(`Ошибка.Предложение не добавлено в избранное.`));
       throw err;
     })
 );
@@ -121,6 +122,7 @@ export const sendReview = (offerId, review) => (dispatch, _getState, api) => {
       dispatch(loadReviews(getAdaptedReviews(data)));
     })
     .catch((err) => {
+      dispatch(setFetchMessage(`Ошибка отправки комментария.`));
       throw err;
     });
 };
