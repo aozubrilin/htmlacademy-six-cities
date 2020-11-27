@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
 import {getRating} from "../../utils/utils";
-import ReviewsList from "../rewiews-list/rewiews-list";
+import ReviewsList from "../rewiews-list/reviews-list";
 import ReviewForm from "../review-form/review-form";
 import {OfferMap} from "../map/map";
 import FavoriteButton from "../favorite-button/favorite-button";

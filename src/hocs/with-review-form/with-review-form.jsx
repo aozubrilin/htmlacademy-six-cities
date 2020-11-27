@@ -51,7 +51,7 @@ const withReviewForm = (Component) => {
       const {rating, review} = this.state;
 
       this.setState({
-        isValid: (review.length >= MIN_REVIEW_LENGTH && review.length <= MAX_REVIEW_LENGTH) && (Number(rating) > 0)
+        isValid: Boolean(review.length >= MIN_REVIEW_LENGTH && review.length <= MAX_REVIEW_LENGTH) && (Number(rating) > 0)
       });
     }
 

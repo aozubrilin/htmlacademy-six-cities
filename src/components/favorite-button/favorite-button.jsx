@@ -17,7 +17,7 @@ const FavoriteButton = ({offerId, isAuthorizedStatus, isFavorite, onChangeFavori
 
   return isAuthorizedStatus ? (
     <button
-      className={`${styleClass}__bookmark-button ${isFavorite ? `${styleClass}__bookmark-button--active` : ``} button`}
+      className={`${styleClass}__bookmark-button${isFavorite ? ` ${styleClass}__bookmark-button--active ` : ` `}button`}
       type="button"
       onClick={handleFavoriteClick}
     >
@@ -28,7 +28,7 @@ const FavoriteButton = ({offerId, isAuthorizedStatus, isFavorite, onChangeFavori
     </button>
   ) : (
     <Link to={AppRoute.LOGIN}
-      className={`${styleClass}__bookmark-button ${isFavorite ? `${styleClass}__bookmark-button--active` : ``} button`}
+      className={`${styleClass}__bookmark-button${isFavorite ? ` ${styleClass}__bookmark-button--active ` : ` `}button`}
       type="button"
     >
       <FavoriteButtonContent

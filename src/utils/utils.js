@@ -10,10 +10,10 @@ export const getUniqueCities = (offers) =>{
 };
 
 export const getDate = (date) => {
-  return date.toLocaleDateString(`en-US`, {
+  return `${new Date(date).toLocaleDateString(`en-US`, {
     month: `long`,
     year: `numeric`,
-  });
+  })}`;
 };
 
 export const extend = (a, b) => {

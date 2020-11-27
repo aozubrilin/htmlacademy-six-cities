@@ -4,12 +4,13 @@ import {AuthorizationStatus} from "../const";
 
 
 const MAX_COUNT_NEAR_OFFERS = 3;
+const MAX_COUNT_REVIEWS = 10;
 
 export const getOffers = (({data}) => data.offers);
 export const getCurrentOffer = (({data}) => data.currentOffer);
 export const getNearOffers = (({data}) => data.nearOffers.slice(0, MAX_COUNT_NEAR_OFFERS));
 export const getFavoriteOffers = (({data}) => data.favoriteOffers);
-export const getReviews = (({data}) => data.reviews);
+export const getReviews = (({data}) => data.reviews.slice(0, MAX_COUNT_REVIEWS));
 
 export const getIsLoadedOffers = (({data}) => data.isLoadedOffers);
 export const getIsLoadedNearOffers = (({data}) => data.isLoadedNearOffers);

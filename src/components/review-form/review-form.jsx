@@ -41,4 +41,5 @@ ReviewForm.propTypes = {
   isValid: PropTypes.bool.isRequired,
 };
 
+export {ReviewForm};
 export default withReviewForm(ReviewForm);

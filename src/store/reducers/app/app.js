@@ -1,6 +1,6 @@
 import {ActionType} from "../../action";
 import {extend} from "../../../utils/utils";
-import {CITIES, SortType} from '../../../const';
+import {CITIES, SortType} from "../../../const";
 
 
 const initialState = {

@@ -35,7 +35,7 @@ export const getAdaptedOffers = (dataArray) => dataArray.map((it) => adaptToClie
 export const adaptToClientReview = (data) => {
   return {
     id: data.id,
-    date: new Date(data.date),
+    date: data.date,
     text: data.comment,
     rating: data.rating,
     user: {

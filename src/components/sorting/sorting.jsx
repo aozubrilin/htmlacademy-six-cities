@@ -8,13 +8,12 @@ import {getCurrentSortType} from "../../store/selectors";
 
 const Sorting = ({isOpen, onOpenChange, onChangeSortedType, currentSortType}) => {
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form className="places__sorting" action="#" method="get"
+      onClick={() => {
+        onOpenChange(isOpen);
+      }}>
       <span className="places__sorting-caption">Sort by </span>
-      <span className="places__sorting-type"
-        tabIndex="0"
-        onClick={() => {
-          onOpenChange(isOpen);
-        }}>
+      <span className="places__sorting-type" tabIndex="0">
         {currentSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>

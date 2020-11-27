@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export const offerPropTypes = PropTypes.shape(
     {
@@ -36,7 +36,7 @@ export const offerPropTypes = PropTypes.shape(
 export const reviewPropTypes = PropTypes.shape(
     {
       id: PropTypes.number.isRequired,
-      date: PropTypes.object.isRequired,
+      date: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
       rating: PropTypes.number.isRequired,
       user: PropTypes.shape(
