@@ -1,4 +1,4 @@
-import {upperCaseFirst} from "../utils/utils";
+import {makeUpperCaseFirst} from "../utils/utils";
 
 export const adaptToClientOffer = (data) => {
   return {
@@ -26,7 +26,7 @@ export const adaptToClientOffer = (data) => {
     price: data.price,
     rating: data.rating,
     title: data.title,
-    type: upperCaseFirst(data.type)
+    type: makeUpperCaseFirst(data.type)
   };
 };
 

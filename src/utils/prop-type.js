@@ -6,18 +6,18 @@ export const offerPropTypes = PropTypes.shape(
       city: PropTypes.shape(
           {
             name: PropTypes.string.isRequired,
-            coordinates: PropTypes.array.isRequired,
+            coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
             zoom: PropTypes.number.isRequired,
           }
       ).isRequired,
       description: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
-      images: PropTypes.array.isRequired,
+      images: PropTypes.arrayOf(PropTypes.string).isRequired,
       rating: PropTypes.number.isRequired,
       bedroomsCount: PropTypes.number.isRequired,
       adultsCount: PropTypes.number.isRequired,
       price: PropTypes.number.isRequired,
-      features: PropTypes.array.isRequired,
+      features: PropTypes.arrayOf(PropTypes.string).isRequired,
       host: PropTypes.shape(
           {
             name: PropTypes.string.isRequired,
@@ -27,7 +27,7 @@ export const offerPropTypes = PropTypes.shape(
           }
       ).isRequired,
       previewImage: PropTypes.string.isRequired,
-      coordinates: PropTypes.array.isRequired,
+      coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
       isPremium: PropTypes.bool.isRequired,
       isFavorite: PropTypes.bool.isRequired,
     }
