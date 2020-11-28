@@ -1,32 +1,32 @@
-import React, {PureComponent} from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Alert from "../../components/alert/alert";
 import {closeAlertMessage} from "../../store/action";
 
-const withAlertDialog = (Component) => {
-  class WithAlertDialog extends PureComponent {
+const withAlertDialog = (WrappedComponent) => {
+  const WithAlertDialog = (props) => {
+    const {alertMessage, closeAlertAction} = props;
 
-    componentWillUnmount() {
-      const {alertMessage, closeAlertAction} = this.props;
+    useEffect(() => {
+      return () => {
+        if (alertMessage) {
+          closeAlertAction();
+        }
+      };
+    }, []);
 
-      if (alertMessage) {
-        closeAlertAction();
-      }
-    }
 
-    render() {
-      const {alertMessage, closeAlertAction} = this.props;
-      return (
-        <React.Fragment>
-          {
-            alertMessage && <Alert message={alertMessage} onClose={closeAlertAction} />
-          }
-          <Component {...this.props}/>
-        </React.Fragment>
-      );
-    }
-  }
+    return (
+      <React.Fragment>
+        {
+          alertMessage && <Alert message={alertMessage} onClose={closeAlertAction} />
+        }
+        <WrappedComponent {...props}/>
+      </React.Fragment>
+    );
+
+  };
 
   WithAlertDialog.propTypes = {
     alertMessage: PropTypes.string,
@@ -48,4 +48,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export {withAlertDialog};
-export default (Component) => connect(mapStateToProps, mapDispatchToProps)(withAlertDialog(Component));
+export default (WrappedComponent) => connect(mapStateToProps, mapDispatchToProps)(withAlertDialog(WrappedComponent));

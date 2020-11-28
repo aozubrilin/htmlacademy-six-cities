@@ -10,8 +10,7 @@ import FavoriteButtonContent from "../favorite-buttton-content/favorite-buttton-
 const FavoriteButton = ({offerId, isAuthorizedStatus, isFavorite, onChangeFavoriteSatus, buttonProperty}) => {
   const {styleClass} = buttonProperty;
 
-  const handleFavoriteClick = (evt) =>{
-    evt.preventDefault();
+  const handleFavoriteClick = () =>{
     onChangeFavoriteSatus(offerId, isFavorite ? 0 : 1);
   };
 

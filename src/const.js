@@ -15,6 +15,11 @@ export const CITIES = [
   `Dusseldorf`
 ];
 
+export const RviewSymbolLenght = {
+  MAX: 300,
+  MIN: 50,
+};
+
 export const SortType = {
   POPULAR: `Popular`,
   TO_HIGHT: `Price: low to high`,

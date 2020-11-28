@@ -58,11 +58,11 @@ export const adaptToClientUser = (data) => {
   };
 };
 
-export const adaptReviewtoServer = (review) => {
+export const adaptReviewtoServer = (comment) => {
 
-  const {text, rating} = review;
+  const {review, rating} = comment;
   return {
-    'comment': text,
+    'comment': review,
     'rating': rating,
   };
 };

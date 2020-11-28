@@ -9,6 +9,7 @@ import {getFavoriteOffers, getIsLoadedfavoriteOffers} from "../../store/selector
 import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
 
 const FavoritesScreen = ({favoriteOffers, isLoadedfavoriteOffers}) => {
+
   return (
     <div className="page">
       <Header/>
