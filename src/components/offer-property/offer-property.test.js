@@ -13,6 +13,7 @@ describe(`OfferProperty snapshot`, () => {
   const store = testStore({
     app: {
       activeOfferId: -1,
+      city: `Amsterdam`,
     },
     data: {
       nearOffers: offers,

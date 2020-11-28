@@ -30,6 +30,7 @@ describe(`Map snapshot`, () => {
             offers={offers}
             activeOfferId={-1}
             isLoading={true}
+            currentCity={`Amserdam`}
           />
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)

@@ -665,7 +665,7 @@ Array [
                   </p>
                   <button
                     className="reviews__submit form__submit button"
-                    disabled="disabled"
+                    disabled={true}
                     type="submit"
                   >
                     Submit

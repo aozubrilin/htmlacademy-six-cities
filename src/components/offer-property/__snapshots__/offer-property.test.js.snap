@@ -602,7 +602,7 @@ exports[`OfferProperty snapshot Should OfferProperty render correctly 1`] = `
             </p>
             <button
               className="reviews__submit form__submit button"
-              disabled="disabled"
+              disabled={true}
               type="submit"
             >
               Submit

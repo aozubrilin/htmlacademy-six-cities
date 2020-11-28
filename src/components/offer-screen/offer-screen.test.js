@@ -27,6 +27,7 @@ describe(`OfferScreen snapshot`, () => {
     const store = mockStore({
       app: {
         activeOfferId: -1,
+        city: `Amsterdam`,
       },
       data: {
         nearOffers: offers,

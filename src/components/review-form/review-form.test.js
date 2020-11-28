@@ -13,12 +13,8 @@ it(`Should ReviewForm render correctly`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <ReviewForm
-          rating={`4`}
-          onSubmit={noop}
-          onFieldChange={noop}
-          review={`Text`}
-          isValid={true}
           offerId={1}
+          sendReviewAction={noop}
         />
       </Provider>
   )
