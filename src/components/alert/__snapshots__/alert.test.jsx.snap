@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert snapshot Should Alert render correctly 1`] = `
+<div
+  className="alert"
+>
+  <span
+    className="closebtn"
+    onClick={[Function]}
+  >
+    ×
+  </span>
+  Error
+</div>
+`;

@@ -32,7 +32,7 @@ const ReviewsItem = ({review}) => {
         <p className="reviews__text">
           {text}
         </p>
-        <time className="reviews__time" dateTime={date.toISOString()}>{getDate(date)}</time>
+        <time className="reviews__time" dateTime={`${new Date(date).toISOString()}`}>{`${getDate(date)}`}</time>
       </div>
     </li>
   );

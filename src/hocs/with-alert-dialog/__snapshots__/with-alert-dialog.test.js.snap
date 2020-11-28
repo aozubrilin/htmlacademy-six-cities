@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withAlertDialog snapshot withAlertDialog connected to store Not should withAlertDialog add Alert 1`] = `
+<div>
+  Mock component
+</div>
+`;
+
+exports[`withAlertDialog snapshot withAlertDialog connected to store Should withAlertDialog add Alert 1`] = `
+Array [
+  <div
+    className="alert"
+  >
+    <span
+      className="closebtn"
+      onClick={[Function]}
+    >
+      ×
+    </span>
+    Text
+  </div>,
+  <div>
+    Mock component
+  </div>,
+]
+`;
+
+exports[`withAlertDialog snapshot withAlertDialog not connected to store Not should WithAlertDialog add Alert 1`] = `
+<div>
+  Mock component
+</div>
+`;
+
+exports[`withAlertDialog snapshot withAlertDialog not connected to store Should WithAlertDialog add Alert 1`] = `
+Array [
+  <div
+    className="alert"
+  >
+    <span
+      className="closebtn"
+      onClick={[Function]}
+    >
+      ×
+    </span>
+    Message
+  </div>,
+  <div>
+    Mock component
+  </div>,
+]
+`;

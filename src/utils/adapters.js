@@ -1,4 +1,4 @@
-import {upperCaseFirst} from "../utils/utils";
+import {makeUpperCaseFirst} from "../utils/utils";
 
 export const adaptToClientOffer = (data) => {
   return {
@@ -26,7 +26,7 @@ export const adaptToClientOffer = (data) => {
     price: data.price,
     rating: data.rating,
     title: data.title,
-    type: upperCaseFirst(data.type)
+    type: makeUpperCaseFirst(data.type)
   };
 };
 
@@ -35,7 +35,7 @@ export const getAdaptedOffers = (dataArray) => dataArray.map((it) => adaptToClie
 export const adaptToClientReview = (data) => {
   return {
     id: data.id,
-    date: new Date(data.date),
+    date: data.date,
     text: data.comment,
     rating: data.rating,
     user: {
@@ -58,11 +58,11 @@ export const adaptToClientUser = (data) => {
   };
 };
 
-export const adaptReviewtoServer = (review) => {
+export const adaptReviewtoServer = (comment) => {
 
-  const {text, rating} = review;
+  const {review, rating} = comment;
   return {
-    'comment': text,
+    'comment': review,
     'rating': rating,
   };
 };

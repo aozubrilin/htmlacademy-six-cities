@@ -10,10 +10,10 @@ export const getUniqueCities = (offers) =>{
 };
 
 export const getDate = (date) => {
-  return date.toLocaleDateString(`en-US`, {
+  return `${new Date(date).toLocaleDateString(`en-US`, {
     month: `long`,
     year: `numeric`,
-  });
+  })}`;
 };
 
 export const extend = (a, b) => {
@@ -50,7 +50,7 @@ export const getSortedReviewsByDate = (reviews) => {
     return reviews;
   }
 
-  return reviews.slice().sort((a, b) => b.date - a.date);
+  return reviews.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 };
 
 export const replaceItem = (Offers, offer) => {
@@ -64,4 +64,4 @@ export const replaceItem = (Offers, offer) => {
     ...Offers.slice(index + 1)];
 };
 
-export const upperCaseFirst = (str) => str ? str[0].toUpperCase() + str.slice(1) : str;
+export const makeUpperCaseFirst = (str) => str ? str[0].toUpperCase() + str.slice(1) : str;

@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {offerPropTypes} from "../../utils/prop-type";
 import {reviewPropTypes} from "../../utils/prop-type";
@@ -12,44 +12,29 @@ import OfferProperty from "../offer-property/offer-property";
 import withAlertDialog from "../../hocs/with-alert-dialog/with-alert-dialog";
 
 
-class OfferScreen extends PureComponent {
-  componentDidMount() {
-    const {offerId, loadDataAction} = this.props;
+const OfferScreen = (props) => {
+  const {offer, offerReviews, isAuthorizedStatus, nearOffers, isLoadedCurrentOffer, isLoadedReviews,
+    onChangeFavoriteSatus, offerId, loadDataAction} = props;
+
+  useEffect(() => {
     loadDataAction(offerId);
-  }
+  }, [offerId]);
 
-  componentDidUpdate(prevProps) {
-    const {offerId, loadDataAction} = this.props;
-    if (prevProps.offerId !== offerId) {
-      loadDataAction(offerId);
-    }
-  }
+  return (
+    <div className="page">
+      <Header/>
+      <main className="page__main page__main--property">
+        {offer.id && <OfferProperty
+          isLoading={isLoadedCurrentOffer}
+          offer={offer}
+          offerReviews={offerReviews}
+          isAuthorizedStatus={isAuthorizedStatus}
+          nearOffers={nearOffers}
+          isLoadedReviews={isLoadedReviews}
+          onChangeFavoriteSatus={onChangeFavoriteSatus}
+        />}
 
-  render() {
-    const {offer,
-      offerReviews,
-      isAuthorizedStatus,
-      nearOffers,
-      isLoadedCurrentOffer,
-      isLoadedReviews,
-      onChangeFavoriteSatus,
-    } = this.props;
-
-    return (
-      <div className="page">
-        <Header/>
-        <main className="page__main page__main--property">
-          {offer.id && <OfferProperty
-            isLoading={isLoadedCurrentOffer}
-            offer={offer}
-            offerReviews={offerReviews}
-            isAuthorizedStatus={isAuthorizedStatus}
-            nearOffers={nearOffers}
-            isLoadedReviews={isLoadedReviews}
-            onChangeFavoriteSatus={onChangeFavoriteSatus}
-          />}
-
-          {nearOffers.length !== 0 &&
+        {nearOffers.length !== 0 &&
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -58,11 +43,10 @@ class OfferScreen extends PureComponent {
               </div>
             </section>
           </div>}
-        </main>
-      </div>
-    );
-  }
-}
+      </main>
+    </div>
+  );
+};
 
 OfferScreen.propTypes = {
   offerId: PropTypes.number,

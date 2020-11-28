@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoriteButtonContent snapshot FavoriteButton render correctly with isFavorite={false} and buttonProperty={favoriteButtonProperty.propertyCard} 1`] = `
+Array [
+  <svg
+    className="property__bookmark-icon"
+    height="33"
+    width="31"
+  >
+    <use
+      xlinkHref="#icon-bookmark"
+    />
+  </svg>,
+  <span
+    className="visually-hidden"
+  >
+    To
+     bookmarks
+  </span>,
+]
+`;
+
+exports[`FavoriteButtonContent snapshot FavoriteButton render correctly with isFavorite={true} and buttonProperty={favoriteButtonProperty.offerCard} 1`] = `
+Array [
+  <svg
+    className="place-card__bookmark-icon"
+    height="19"
+    width="18"
+  >
+    <use
+      xlinkHref="#icon-bookmark"
+    />
+  </svg>,
+  <span
+    className="visually-hidden"
+  >
+    In
+     bookmarks
+  </span>,
+]
+`;
+
+exports[`FavoriteButtonContent snapshot FavoriteButton render correctly with isFavorite={true} and buttonProperty={favoriteButtonProperty.propertyCard} 1`] = `
+Array [
+  <svg
+    className="property__bookmark-icon"
+    height="33"
+    width="31"
+  >
+    <use
+      xlinkHref="#icon-bookmark"
+    />
+  </svg>,
+  <span
+    className="visually-hidden"
+  >
+    In
+     bookmarks
+  </span>,
+]
+`;
+
+exports[`FavoriteButtonContent snapshot FavoriteButtonContent render correctly with isFavorite={false} and buttonProperty={favoriteButtonProperty.offerCard} 1`] = `
+Array [
+  <svg
+    className="place-card__bookmark-icon"
+    height="19"
+    width="18"
+  >
+    <use
+      xlinkHref="#icon-bookmark"
+    />
+  </svg>,
+  <span
+    className="visually-hidden"
+  >
+    To
+     bookmarks
+  </span>,
+]
+`;

@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoritesCityItem snapshot Should FavoritesCityItem render correctly 1`] = `
+<li
+  className="favorites__locations-items"
+>
+  <div
+    className="favorites__locations locations locations--current"
+  >
+    <div
+      className="locations__item"
+    >
+      <a
+        className="locations__item-link"
+        href="#"
+      >
+        <span>
+          Brussels
+        </span>
+      </a>
+    </div>
+  </div>
+  <div
+    className="favorites__places"
+  >
+    <article
+      className="favorites__card place-card "
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      
+      <div
+        className="favorites__image-wrapper place-card__image-wrapper"
+      >
+        <a
+          href="/offer/2"
+          onClick={[Function]}
+        >
+          <img
+            alt="Place image"
+            className="place-card__image"
+            height="110"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/8.jpg"
+            width="150"
+          />
+        </a>
+      </div>
+      <div
+        className="place-card__info"
+      >
+        <div
+          className="place-card__price-wrapper"
+        >
+          <div
+            className="place-card__price"
+          >
+            <b
+              className="place-card__price-value"
+            >
+              €
+              323
+            </b>
+            <span
+              className="place-card__price-text"
+            >
+              / night
+            </span>
+          </div>
+          <a
+            className="place-card__bookmark-button place-card__bookmark-button--active button"
+            href="/login"
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              className="place-card__bookmark-icon"
+              height="19"
+              width="18"
+            >
+              <use
+                xlinkHref="#icon-bookmark"
+              />
+            </svg>
+            <span
+              className="visually-hidden"
+            >
+              In
+               bookmarks
+            </span>
+          </a>
+        </div>
+        <div
+          className="place-card__rating rating"
+        >
+          <div
+            className="place-card__stars rating__stars"
+          >
+            <span
+              style={
+                Object {
+                  "width": "80%",
+                }
+              }
+            />
+            <span
+              className="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <h2
+          className="place-card__name"
+        >
+          <a
+            href="/offer/2"
+            onClick={[Function]}
+          >
+            Amazing and Extremely Central Flat
+          </a>
+        </h2>
+        <p
+          className="place-card__type"
+        >
+          Apartment
+        </p>
+      </div>
+    </article>
+    <article
+      className="favorites__card place-card "
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      
+      <div
+        className="favorites__image-wrapper place-card__image-wrapper"
+      >
+        <a
+          href="/offer/3"
+          onClick={[Function]}
+        >
+          <img
+            alt="Place image"
+            className="place-card__image"
+            height="110"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/16.jpg"
+            width="150"
+          />
+        </a>
+      </div>
+      <div
+        className="place-card__info"
+      >
+        <div
+          className="place-card__price-wrapper"
+        >
+          <div
+            className="place-card__price"
+          >
+            <b
+              className="place-card__price-value"
+            >
+              €
+              218
+            </b>
+            <span
+              className="place-card__price-text"
+            >
+              / night
+            </span>
+          </div>
+          <a
+            className="place-card__bookmark-button place-card__bookmark-button--active button"
+            href="/login"
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              className="place-card__bookmark-icon"
+              height="19"
+              width="18"
+            >
+              <use
+                xlinkHref="#icon-bookmark"
+              />
+            </svg>
+            <span
+              className="visually-hidden"
+            >
+              In
+               bookmarks
+            </span>
+          </a>
+        </div>
+        <div
+          className="place-card__rating rating"
+        >
+          <div
+            className="place-card__stars rating__stars"
+          >
+            <span
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            />
+            <span
+              className="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <h2
+          className="place-card__name"
+        >
+          <a
+            href="/offer/3"
+            onClick={[Function]}
+          >
+            The house among olive 
+          </a>
+        </h2>
+        <p
+          className="place-card__type"
+        >
+          Apartment
+        </p>
+      </div>
+    </article>
+    <article
+      className="favorites__card place-card "
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <div
+        className="place-card__mark"
+      >
+        <span>
+          Premium
+        </span>
+      </div>
+      <div
+        className="favorites__image-wrapper place-card__image-wrapper"
+      >
+        <a
+          href="/offer/22"
+          onClick={[Function]}
+        >
+          <img
+            alt="Place image"
+            className="place-card__image"
+            height="110"
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/5.jpg"
+            width="150"
+          />
+        </a>
+      </div>
+      <div
+        className="place-card__info"
+      >
+        <div
+          className="place-card__price-wrapper"
+        >
+          <div
+            className="place-card__price"
+          >
+            <b
+              className="place-card__price-value"
+            >
+              €
+              175
+            </b>
+            <span
+              className="place-card__price-text"
+            >
+              / night
+            </span>
+          </div>
+          <a
+            className="place-card__bookmark-button place-card__bookmark-button--active button"
+            href="/login"
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              className="place-card__bookmark-icon"
+              height="19"
+              width="18"
+            >
+              <use
+                xlinkHref="#icon-bookmark"
+              />
+            </svg>
+            <span
+              className="visually-hidden"
+            >
+              In
+               bookmarks
+            </span>
+          </a>
+        </div>
+        <div
+          className="place-card__rating rating"
+        >
+          <div
+            className="place-card__stars rating__stars"
+          >
+            <span
+              style={
+                Object {
+                  "width": "80%",
+                }
+              }
+            />
+            <span
+              className="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <h2
+          className="place-card__name"
+        >
+          <a
+            href="/offer/22"
+            onClick={[Function]}
+          >
+            Beautiful & luxurious apartment at great location
+          </a>
+        </h2>
+        <p
+          className="place-card__type"
+        >
+          Room
+        </p>
+      </div>
+    </article>
+  </div>
+</li>
+`;

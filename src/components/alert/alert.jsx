@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./alert.css";
 
 
-const Alert = ({message, onClose}) => {
+export const Alert = ({message, onClose}) => {
   return (
     <div className="alert">
       <span className="closebtn" onClick={onClose}>&times;</span>

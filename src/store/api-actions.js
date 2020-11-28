@@ -71,8 +71,9 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
   .then(({data}) => {
-    dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     dispatch(loadUser(adaptToClientUser(data)));
+    dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+
   })
   .catch((err) => {
     dispatch(setFetchMessage(err.message));

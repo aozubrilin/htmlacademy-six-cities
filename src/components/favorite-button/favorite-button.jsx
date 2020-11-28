@@ -10,14 +10,13 @@ import FavoriteButtonContent from "../favorite-buttton-content/favorite-buttton-
 const FavoriteButton = ({offerId, isAuthorizedStatus, isFavorite, onChangeFavoriteSatus, buttonProperty}) => {
   const {styleClass} = buttonProperty;
 
-  const handleFavoriteClick = (evt) =>{
-    evt.preventDefault();
+  const handleFavoriteClick = () =>{
     onChangeFavoriteSatus(offerId, isFavorite ? 0 : 1);
   };
 
   return isAuthorizedStatus ? (
     <button
-      className={`${styleClass}__bookmark-button ${isFavorite ? `${styleClass}__bookmark-button--active` : ``} button`}
+      className={`${styleClass}__bookmark-button${isFavorite ? ` ${styleClass}__bookmark-button--active ` : ` `}button`}
       type="button"
       onClick={handleFavoriteClick}
     >
@@ -28,7 +27,7 @@ const FavoriteButton = ({offerId, isAuthorizedStatus, isFavorite, onChangeFavori
     </button>
   ) : (
     <Link to={AppRoute.LOGIN}
-      className={`${styleClass}__bookmark-button ${isFavorite ? `${styleClass}__bookmark-button--active` : ``} button`}
+      className={`${styleClass}__bookmark-button${isFavorite ? ` ${styleClass}__bookmark-button--active ` : ` `}button`}
       type="button"
     >
       <FavoriteButtonContent
