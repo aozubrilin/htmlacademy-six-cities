@@ -6,7 +6,6 @@ export const OfferCardClass = {
   FAVORITE: `favorites`,
 }; 
 
-
 export const CITIES = [
   `Paris`,
   `Cologne`,
