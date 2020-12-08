@@ -1,22 +1,23 @@
 language: node_js
 
 node_js:
-  - "10"
+  - 10
 
 notifications:
   email: false
 
-cache:
-  directories:
-  - node_modules
+cache: yarn
+
+install: 
+- yarn intall
 
 script:
-  npm run build
+ - yarn test
+ - yarn run build
 
 deploy:
   provider: pages
   skip_cleanup: true
   github-token: $GITHUB_TOKEN
-  local_dir: public
   on:
     branch: master
