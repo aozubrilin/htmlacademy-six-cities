@@ -6,14 +6,13 @@ node_js:
 notifications:
   email: false
 
-cache: yarn
+cache: npm
 
 install: 
-- yarn intall
+- npm intall
 
 script:
- - yarn test
- - yarn run build
+ - npm run build
 
 deploy:
   provider: pages
