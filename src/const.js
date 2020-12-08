@@ -4,7 +4,8 @@ export const OfferCardClass = {
   MAIN: `cities`,
   NEAR: `near-places`,
   FAVORITE: `favorites`,
-};
+}; 
+
 
 export const CITIES = [
   `Paris`,
