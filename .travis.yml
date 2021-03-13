@@ -1,17 +1,16 @@
 language: node_js
 
 node_js:
-  - 10
+  - "10"
 
 notifications:
   email: false
 
 cache:
   directories:
-  - node_modules
+    - node_modules
 
-script:
-  npm run build
+script: npm run build
 
 deploy:
   provider: pages
