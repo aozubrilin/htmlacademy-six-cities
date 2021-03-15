@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = ` http://cors.io/?https://5.react.pages.academy/six-cities`;
+const BACKEND_URL = ` http://cors.io/?https://6.react.pages.academy/six-cities`;
 const REQUEST_TIMEOUT = 5000;
 
 const HttpCode = {
