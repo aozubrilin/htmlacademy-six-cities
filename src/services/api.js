@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_URL = `http://cors.io/?https://6.react.pages.academy/six-cities`;
+const BACKEND_URL = `https://5.react.pages.academy/six-cities`;
 const REQUEST_TIMEOUT = 5000;
 
 const HttpCode = {
@@ -11,6 +11,7 @@ export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
+    withCredentials: false,
   });
 
   const onSuccess = (response) => response;
