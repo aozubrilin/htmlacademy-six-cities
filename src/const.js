@@ -4,7 +4,8 @@ export const OfferCardClass = {
   MAIN: `cities`,
   NEAR: `near-places`,
   FAVORITE: `favorites`,
-};
+}; 
+
 
 export const CITIES = [
   `Paris`,
@@ -12,7 +13,7 @@ export const CITIES = [
   `Brussels`,
   `Amsterdam`,
   `Hamburg`,
-  `Dusseldorf`,
+  `Dusseldorf`
 ];
 
 export const RviewSymbolLenght = {
@@ -28,11 +29,11 @@ export const SortType = {
 };
 
 export const ratingReview = [
-  { title: `perfect`, value: `5` },
-  { title: `good`, value: `4` },
-  { title: `not bad`, value: `3` },
-  { title: `badly`, value: `2` },
-  { title: `terribly`, value: `1` },
+  {title: `perfect`, value: `5`},
+  {title: `good`, value: `4`},
+  {title: `not bad`, value: `3`},
+  {title: `badly`, value: `2`},
+  {title: `terribly`, value: `1`},
 ];
 
 export const AuthorizationStatus = {
@@ -48,14 +49,14 @@ export const APIRoute = {
 };
 
 export const HttpCode = {
-  UNAUTHORIZED: 401,
+  UNAUTHORIZED: 401
 };
 
 export const AppRoute = {
-  MAIN: `/htmlacademy-six-cities/`,
-  OFFER: `/htmlacademy-six-cities/offer`,
-  LOGIN: `/htmlacademy-six-cities/login`,
-  FAVORITES: `/htmlacademy-six-cities/favorites`,
+  MAIN: `/`,
+  OFFER: `/offer`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
 };
 
 export const favoriteButtonProperty = {
@@ -68,5 +69,6 @@ export const favoriteButtonProperty = {
     styleClass: `place-card`,
     width: `18`,
     height: `19`,
-  },
+  }
+
 };
