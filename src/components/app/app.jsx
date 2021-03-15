@@ -29,7 +29,7 @@ const App = () => {
             );
           }}
         />
-        <Route exact path="/offer/:id" component={OfferScreen}/>
+        <Route exact path="/htmlacademy-six-cities/offer/:id" component={OfferScreen}/>
       </Switch>
     </Router>
   );
