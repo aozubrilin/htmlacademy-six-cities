@@ -52,10 +52,10 @@ export const HttpCode = {
 };
 
 export const AppRoute = {
-  MAIN: `/`,
-  OFFER: `/offer`,
-  LOGIN: `/login`,
-  FAVORITES: `/favorites`,
+  MAIN: `/htmlacademy-six-cities/`,
+  OFFER: `/htmlacademy-six-cities/offer`,
+  LOGIN: `/htmlacademy-six-cities//login`,
+  FAVORITES: `/htmlacademy-six-cities//favorites`,
 };
 
 export const favoriteButtonProperty = {
