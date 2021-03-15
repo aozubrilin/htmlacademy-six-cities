@@ -47,11 +47,11 @@ const Map = (props) => {
   const addPins = () => {
     group = leaflet.layerGroup().addTo(map.current);
     const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
+      iconUrl: `/htmlacademy-six-cities/img/pin.svg`,
       iconSize: [30, 30]
     });
     const activeIcon = leaflet.icon({
-      iconUrl: `img/pin-active.svg`,
+      iconUrl: `/htmlacademy-six-cities/img/pin-active.svg`,
       iconSize: [30, 30]
     });
 
